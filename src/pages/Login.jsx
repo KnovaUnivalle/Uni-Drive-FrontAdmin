@@ -4,6 +4,8 @@ import {
 	CardContent,
 	TextField,
 	Typography,
+	Alert,
+	Snackbar,
 } from '@mui/material';
 import { Container } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
@@ -24,20 +26,28 @@ export default function Login() {
 		email: '',
 		password: '',
 	});
+	const [alert, setAlert] = useState(false);
 	const { login } = useAuth();
 
 	const handleChange = e => {
+		setAlert(false);
 		setCredentials({
 			...credentials,
 			[e.target.name]: e.target.value,
 		});
 	};
 
+	const handleAlertClose = () => setAlert(false);
+
 	const handleSubmit = async e => {
 		e.preventDefault();
-		console.log(credentials);
 		const res = await loginService(credentials);
-		login(res.jwt);
+		if (res.jwt) {
+			login(res.jwt);
+		} else {
+			setAlert(true);
+			console.log(res.errors);
+		}
 	};
 
 	return (
@@ -87,6 +97,15 @@ export default function Login() {
 					</CardContent>
 				</Card>
 			</Container>
+			<Snackbar
+				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+				open={alert}
+				onClose={handleAlertClose}
+			>
+				<Alert variant='filled' severity='warning'>
+					Credenciales incorrectas
+				</Alert>
+			</Snackbar>
 		</ThemeProvider>
 	);
 }
