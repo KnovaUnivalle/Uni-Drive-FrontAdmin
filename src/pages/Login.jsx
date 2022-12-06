@@ -53,9 +53,13 @@ export default function Login() {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		const res = await loginService(credentials);
-		if (res.jwt) {
-			login(res.jwt);
+		if (validEmail) {
+			const res = await loginService(credentials);
+			if (res.jwt) {
+				login(res.jwt);
+			} else {
+				setAlert(true);
+			}
 		} else {
 			setAlert(true);
 		}
