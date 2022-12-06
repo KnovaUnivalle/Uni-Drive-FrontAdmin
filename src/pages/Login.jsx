@@ -14,6 +14,7 @@ import { ThemeProvider } from '@emotion/react';
 import { useAuth } from '../hooks/useAuth';
 import { useState } from 'react';
 import loginService from '../services/Login.service';
+import { Navigate } from 'react-router-dom';
 
 const theme = createTheme({
 	palette: {
@@ -22,12 +23,15 @@ const theme = createTheme({
 });
 
 export default function Login() {
+	const { token, login } = useAuth();
+	if (token) {
+		return <Navigate to='/'></Navigate>;
+	}
 	const [credentials, setCredentials] = useState({
 		email: '',
 		password: '',
 	});
 	const [alert, setAlert] = useState(false);
-	const { login } = useAuth();
 
 	const handleChange = e => {
 		setAlert(false);
