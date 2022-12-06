@@ -32,6 +32,7 @@ export default function Login() {
 		password: '',
 	});
 	const [alert, setAlert] = useState(false);
+	const [validEmail, setValidEmail] = useState(true);
 
 	const handleChange = e => {
 		setAlert(false);
@@ -39,6 +40,13 @@ export default function Login() {
 			...credentials,
 			[e.target.name]: e.target.value,
 		});
+		if (e.target.name === 'email') {
+			if (e.target.value.length === 0) {
+				setValidEmail(true);
+			} else {
+				setValidEmail(e.target.value.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/));
+			}
+		}
 	};
 
 	const handleAlertClose = () => setAlert(false);
@@ -50,7 +58,6 @@ export default function Login() {
 			login(res.jwt);
 		} else {
 			setAlert(true);
-			console.log(res.errors);
 		}
 	};
 
@@ -82,6 +89,8 @@ export default function Login() {
 								}}
 								onChange={handleChange}
 								fullWidth
+								required
+								helperText={validEmail ? null : 'Formato de correo no valido'}
 							></TextField>
 							<TextField
 								key={'password'}
@@ -93,6 +102,7 @@ export default function Login() {
 								onChange={handleChange}
 								style={{ marginBottom: '1rem' }}
 								fullWidth
+								required
 							></TextField>
 							<Button variant='contained' type='submit'>
 								Iniciar sesión
