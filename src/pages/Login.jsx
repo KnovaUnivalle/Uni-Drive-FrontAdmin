@@ -15,6 +15,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useState } from 'react';
 import loginService from '../services/Login.service';
 import { Navigate } from 'react-router-dom';
+import ErrorAlert from '../components/alerts/ErrorAlert';
 
 const theme = createTheme({
 	palette: {
@@ -115,15 +116,11 @@ export default function Login() {
 					</CardContent>
 				</Card>
 			</Container>
-			<Snackbar
-				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+			<ErrorAlert
 				open={alert}
 				onClose={handleAlertClose}
-			>
-				<Alert variant='filled' severity='warning'>
-					Credenciales incorrectas
-				</Alert>
-			</Snackbar>
+				message={'Credenciales incorrectas'}
+			/>
 		</ThemeProvider>
 	);
 }
