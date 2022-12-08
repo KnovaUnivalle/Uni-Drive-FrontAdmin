@@ -4,8 +4,6 @@ import {
 	CardContent,
 	TextField,
 	Typography,
-	Alert,
-	Snackbar,
 } from '@mui/material';
 import { Container } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
@@ -38,7 +36,6 @@ export default function Login() {
 		password: true,
 	});
 	const [alert, setAlert] = useState(false);
-	const [validEmail, setValidEmail] = useState(true);
 
 	const handleChange = e => {
 		setAlert(false);
