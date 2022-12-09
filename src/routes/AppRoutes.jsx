@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { RouteGuard } from '../components/tools/RouteGuard';
 import Login from '../pages/Login';
+import HomeRoutes from './HomeRoutes';
 
 const HomePage = () => (
 	<div>
@@ -33,6 +34,14 @@ export default function AppRoutes() {
 	return (
 		<Routes>
 			<Route path='/' element={<HomePage />}></Route>
+			<Route
+				path='home/*'
+				element={
+					<RouteGuard>
+						<HomeRoutes />
+					</RouteGuard>
+				}
+			></Route>
 			<Route path='/login' element={<Login />}></Route>
 			<Route
 				path='/local'
