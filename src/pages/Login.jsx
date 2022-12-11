@@ -73,14 +73,21 @@ export default function Login() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Container maxWidth='sm'>
+			<Container
+				maxWidth='xs'
+				style={{
+					height: '100%',
+					justifyContent: 'center',
+					display: 'flex',
+					flexDirection: 'column',
+				}}
+			>
 				<Card>
 					<CardContent
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
 							height: '20rem',
-							width: '20rem',
 							justifyContent: 'space-around',
 						}}
 					>
