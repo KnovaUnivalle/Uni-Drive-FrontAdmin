@@ -8,11 +8,15 @@ import {
 	Typography,
 } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
+
+const options = ['profile', 'home', 'logout'];
 
 export default function Profile() {
-	const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 	const [anchorElUser, setAnchorElUser] = useState(null);
+	const navigate = useNavigate();
+	const { logout } = useAuth();
 
 	const handleOpenUserMenu = e => {
 		setAnchorElUser(e.target);
@@ -21,6 +25,25 @@ export default function Profile() {
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
+
+	const objectOption = {
+		profile: {
+			function: () => {
+				setAnchorElUser(null);
+				navigate('/home/profile');
+			},
+			name: 'Perfil',
+		},
+		home: {
+			function: () => {
+				setAnchorElUser(null);
+				navigate('/home');
+			},
+			name: 'Página principal',
+		},
+		logout: { function: () => logout(), name: 'Cerrar sesión' },
+	};
+
 	return (
 		<Box sx={{ flexGrow: 0 }}>
 			<Tooltip title='Open settings'>
@@ -43,9 +66,13 @@ export default function Profile() {
 				open={Boolean(anchorElUser)}
 				onClose={handleCloseUserMenu}
 			>
-				{settings.map(setting => (
-					<MenuItem key={setting} onClose={handleCloseUserMenu}>
-						<Typography>{setting}</Typography>
+				{options.map(option => (
+					<MenuItem
+						key={option}
+						onClose={handleCloseUserMenu}
+						onClick={objectOption[option].function}
+					>
+						<Typography>{objectOption[option].name}</Typography>
 					</MenuItem>
 				))}
 			</Menu>
