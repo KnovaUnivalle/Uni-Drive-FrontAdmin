@@ -12,7 +12,7 @@ import { ThemeProvider } from '@emotion/react';
 import { useAuth } from '../hooks/useAuth';
 import { useState } from 'react';
 import loginService from '../services/Login.service';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import ErrorAlert from '../components/alerts/ErrorAlert';
 import { validateEmail, validatePassword } from '../utils/Validate';
 
@@ -140,6 +140,9 @@ export default function Login() {
 				onClose={handleAlertClose}
 				message={'Credenciales incorrectas'}
 			/>
+			<footer style={{ textAlign: 'end' }}>
+				<Link to='/'>INICIO</Link>
+			</footer>
 		</ThemeProvider>
 	);
 }

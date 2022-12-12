@@ -33,9 +33,9 @@ export default function AppRoutes() {
 			<Route
 				path='home/*'
 				element={
-					// <RouteGuard>
-					<HomeRoutes />
-					// </RouteGuard>
+					<RouteGuard>
+						<HomeRoutes />
+					</RouteGuard>
 				}
 			></Route>
 			<Route path='/login' element={<Login />}></Route>

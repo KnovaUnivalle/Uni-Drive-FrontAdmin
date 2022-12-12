@@ -13,7 +13,7 @@ export default function SignIn() {
 
 	return (
 		<Button color='secondary' variant='outlined' onClick={handleButton}>
-			{token ? 'Ir al Home' : 'Acceder'}
+			{token ? 'Página principal' : 'Acceder'}
 		</Button>
 	);
 }
