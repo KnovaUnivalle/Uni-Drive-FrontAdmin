@@ -80,6 +80,7 @@ export default function Login() {
 					justifyContent: 'center',
 					display: 'flex',
 					flexDirection: 'column',
+					padding: '2rem',
 				}}
 			>
 				<Card>
@@ -140,7 +141,7 @@ export default function Login() {
 				onClose={handleAlertClose}
 				message={'Credenciales incorrectas'}
 			/>
-			<footer style={{ textAlign: 'end' }}>
+			<footer style={{ textAlign: 'end', padding: '2rem' }}>
 				<Link to='/'>INICIO</Link>
 			</footer>
 		</ThemeProvider>

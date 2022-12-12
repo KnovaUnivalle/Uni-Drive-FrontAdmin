@@ -1,0 +1,14 @@
+p{
+    text-align: start;
+}
+.banner{
+    display: flex;
+    justify-content: space-between;
+}
+.back{
+    background-color: #FDFAFA;
+    padding: 2rem;
+}
+.filled{
+    height: 56vh;
+}
