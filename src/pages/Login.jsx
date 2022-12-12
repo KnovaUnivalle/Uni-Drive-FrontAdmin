@@ -76,11 +76,12 @@ export default function Login() {
 			<Container
 				maxWidth='xs'
 				style={{
-					height: '100%',
+					height: '90vh',
 					justifyContent: 'center',
 					display: 'flex',
 					flexDirection: 'column',
 					padding: '2rem',
+					textAlign: 'center',
 				}}
 			>
 				<Card>

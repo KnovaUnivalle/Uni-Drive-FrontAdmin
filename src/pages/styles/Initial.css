@@ -1,4 +1,4 @@
-p{
+.paragraph{
     text-align: start;
 }
 .banner{
@@ -6,7 +6,7 @@ p{
     justify-content: space-between;
 }
 .back{
-    background-color: #FDFAFA;
+    background-color: #F9F9F9;
     padding: 2rem;
 }
 .filled{

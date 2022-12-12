@@ -11,11 +11,11 @@ export default function Initial() {
 					<Typography variant='h6'>UniDrive Manager</Typography>
 					<SignIn />
 				</div>
-				<h1>Bienvenido</h1>
+				<h1 style={{ textAlign: 'center' }}>Bienvenido</h1>
 			</header>
 			<section className='filled'></section>
 			<section>
-				<p>
+				<p className='paragraph'>
 					Aplicación desarrollada con el proposito de administrar UniDrive.
 					<br />
 					<a href='https://github.com/ProgramadoresAnonimosUnivalle'>
@@ -25,7 +25,7 @@ export default function Initial() {
 			</section>
 			<footer className='banner'>
 				<div>
-					<p>
+					<p className='paragraph'>
 						Equipo Knova
 						<br />
 						Cali, Colombia
