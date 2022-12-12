@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
 	 */
 	const logout = () => {
 		setToken(null);
-		navigate('/local', { replace: true });
+		navigate('/', { replace: true });
 	};
 
 	/**
@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
 	 */
 	const login = key => {
 		setToken(key);
-		navigate('/local', { replace: true });
+		navigate('/home', { replace: true });
 	};
 
 	const value = useMemo(() => ({ token, logout, login }), [token]);
