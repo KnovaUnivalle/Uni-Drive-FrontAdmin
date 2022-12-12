@@ -1,4 +1,4 @@
-import { IconButton, Typography } from '@mui/material';
+import { IconButton, Tooltip, Typography } from '@mui/material';
 import SignIn from '../components/buttons/SignIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import './styles/Initial.css';
@@ -42,7 +42,9 @@ export default function Initial() {
 							target='_blank'
 							rel='noreferrer'
 						>
-							<GitHubIcon fontSize='large' color='action' />
+							<Tooltip title='GitHub'>
+								<GitHubIcon fontSize='large' color='action' />
+							</Tooltip>
 						</a>
 					</IconButton>
 				</div>
