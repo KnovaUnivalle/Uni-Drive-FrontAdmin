@@ -1,0 +1,14 @@
+.paragraph{
+    text-align: start;
+}
+.banner{
+    display: flex;
+    justify-content: space-between;
+}
+.back{
+    background-color: #F9F9F9;
+    padding: 2rem;
+}
+.filled{
+    height: 56vh;
+}

@@ -12,7 +12,7 @@ import { ThemeProvider } from '@emotion/react';
 import { useAuth } from '../hooks/useAuth';
 import { useState } from 'react';
 import loginService from '../services/Login.service';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import ErrorAlert from '../components/alerts/ErrorAlert';
 import { validateEmail, validatePassword } from '../utils/Validate';
 
@@ -73,14 +73,23 @@ export default function Login() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Container maxWidth='sm'>
+			<Container
+				maxWidth='xs'
+				style={{
+					height: '90vh',
+					justifyContent: 'center',
+					display: 'flex',
+					flexDirection: 'column',
+					padding: '2rem',
+					textAlign: 'center',
+				}}
+			>
 				<Card>
 					<CardContent
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
 							height: '20rem',
-							width: '20rem',
 							justifyContent: 'space-around',
 						}}
 					>
@@ -133,6 +142,9 @@ export default function Login() {
 				onClose={handleAlertClose}
 				message={'Credenciales incorrectas'}
 			/>
+			<footer style={{ textAlign: 'end', padding: '2rem' }}>
+				<Link to='/'>INICIO</Link>
+			</footer>
 		</ThemeProvider>
 	);
 }

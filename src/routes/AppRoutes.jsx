@@ -1,12 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import { RouteGuard } from '../components/tools/RouteGuard';
+import Home from '../pages/Home';
+import Initial from '../pages/Initial';
 import Login from '../pages/Login';
-
-const HomePage = () => (
-	<div>
-		<h1>This is the Home Page</h1>
-	</div>
-);
+import NotFound from '../pages/NotFound';
+import HomeRoutes from './HomeRoutes';
 
 export function Local() {
 	return (
@@ -32,7 +30,15 @@ export function Local() {
 export default function AppRoutes() {
 	return (
 		<Routes>
-			<Route path='/' element={<HomePage />}></Route>
+			<Route path='/' element={<Initial />}></Route>
+			<Route
+				path='home/*'
+				element={
+					// <RouteGuard>
+					<Home />
+					// </RouteGuard>
+				}
+			></Route>
 			<Route path='/login' element={<Login />}></Route>
 			<Route
 				path='/local'
@@ -42,6 +48,7 @@ export default function AppRoutes() {
 					</RouteGuard>
 				}
 			></Route>
+			<Route path='*' element={<NotFound />}></Route>
 		</Routes>
 	);
 }
