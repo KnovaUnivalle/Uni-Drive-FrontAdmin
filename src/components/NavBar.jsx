@@ -12,7 +12,13 @@ import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import Profile from './buttons/Account';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [
+	'Pasajeros',
+	'Conductores',
+	'Vehiculos',
+	'Atributos',
+	'Informes',
+];
 
 export default function NavBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
@@ -33,7 +39,7 @@ export default function NavBar() {
 						variant='h6'
 						noWrap
 						sx={{
-							mr: 2,
+							mr: 3,
 							display: { xs: 'none', md: 'flex' },
 							fontFamily: 'monospace',
 							fontWeight: 700,

@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { RouteGuard } from '../components/tools/RouteGuard';
+import Home from '../pages/Home';
 import Initial from '../pages/Initial';
 import Login from '../pages/Login';
 import NotFound from '../pages/NotFound';
@@ -33,9 +34,9 @@ export default function AppRoutes() {
 			<Route
 				path='home/*'
 				element={
-					<RouteGuard>
-						<HomeRoutes />
-					</RouteGuard>
+					// <RouteGuard>
+					<Home />
+					// </RouteGuard>
 				}
 			></Route>
 			<Route path='/login' element={<Login />}></Route>
