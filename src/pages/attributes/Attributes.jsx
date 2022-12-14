@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
-import NavDrawer from '../components/nav/NavDrawer';
+import NavDrawer from '../../components/nav/NavDrawer';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import AttributesRoutes from '../routes/AttributesRoutes';
+import AttributesRoutes from '../../routes/AttributesRoutes';
 
 const elements = ['Colores', 'Marcas', 'Modelos', 'Tipos', 'Ciudades'];
 const objectElements = {
