@@ -17,7 +17,7 @@ export default function NavDrawer({ elements, objectElements }) {
 	const isMobile = useMediaQuery(theme.breakpoints.up('md'));
 	const navigate = useNavigate();
 	return (
-		<Drawer variant='permanent' open={isMobile} style={{ zIndex: '0' }} disa>
+		<Drawer variant='permanent' open={isMobile} style={{ zIndex: '0' }}>
 			<NavBarHeader />
 			<List>
 				{elements.map(element => (
