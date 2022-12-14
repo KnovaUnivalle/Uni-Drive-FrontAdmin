@@ -4,7 +4,6 @@ import Home from '../pages/Home';
 import Initial from '../pages/Initial';
 import Login from '../pages/Login';
 import NotFound from '../pages/NotFound';
-import HomeRoutes from './HomeRoutes';
 
 export function Local() {
 	return (
@@ -34,9 +33,9 @@ export default function AppRoutes() {
 			<Route
 				path='home/*'
 				element={
-					// <RouteGuard>
+					<RouteGuard>
 					<Home />
-					// </RouteGuard>
+					</RouteGuard>
 				}
 			></Route>
 			<Route path='/login' element={<Login />}></Route>
