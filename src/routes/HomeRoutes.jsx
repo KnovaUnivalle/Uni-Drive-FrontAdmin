@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import Attributes from '../pages/Attributes';
+import Attributes from '../pages/attributes/Attributes';
 import DashBoard from '../pages/DashBoard';
 import NotFound from '../pages/NotFound';
 import Profile from '../pages/Profile';
