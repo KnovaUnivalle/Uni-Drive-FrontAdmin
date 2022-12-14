@@ -10,7 +10,7 @@ import {
 import { Box, Container } from '@mui/system';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import Profile from './buttons/Account';
+import Profile from '../buttons/Account';
 
 const pages = [
 	'Pasajeros',
