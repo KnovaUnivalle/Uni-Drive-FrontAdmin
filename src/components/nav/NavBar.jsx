@@ -25,6 +25,14 @@ export default function NavBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const navigate = useNavigate();
 
+	const pagesUrl = {
+		Pasajeros: '/home/rider',
+		Conductores: '/home/bidder',
+		Vehiculos: '/home/vehicle',
+		Informes: '/home/report',
+		Atributos: '/home/attribute',
+	};
+
 	const handleOpenNavMenu = e => {
 		setAnchorElNav(e.currentTarget);
 	};
@@ -42,7 +50,7 @@ export default function NavBar() {
 							color: 'black',
 							display: { xs: 'none', md: 'flex' },
 						}}
-						onClick={() => navigate('/home')}
+						onClick={() => navigate('/home/')}
 					>
 						<Typography
 							variant='h6'
@@ -85,7 +93,11 @@ export default function NavBar() {
 							}}
 						>
 							{pages.map(page => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
+								<MenuItem
+									key={page}
+									onClose={handleCloseNavMenu}
+									onClick={() => navigate(pagesUrl[page], { replace: true })}
+								>
 									<Typography textAlign='center'>{page}</Typography>
 								</MenuItem>
 							))}
@@ -115,7 +127,8 @@ export default function NavBar() {
 						{pages.map(page => (
 							<Button
 								key={page}
-								onClick={handleCloseNavMenu}
+								onClose={handleCloseNavMenu}
+								onClick={() => navigate(pagesUrl[page], { replace: true })}
 								sx={{ my: 2, color: 'black', display: 'block' }}
 							>
 								{page}

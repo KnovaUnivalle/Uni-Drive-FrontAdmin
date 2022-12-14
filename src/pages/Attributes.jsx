@@ -7,11 +7,11 @@ import AttributesRoutes from '../routes/AttributesRoutes';
 
 const elements = ['Colores', 'Marcas', 'Modelos', 'Tipos', 'Ciudades'];
 const objectElements = {
-	Colores: { url: '/home/attributes/color', icon: <ColorLensIcon /> },
-	Marcas: { url: '/home/attributes/brand', icon: <ColorLensIcon /> },
-	Modelos: { url: '/home/attributes/model', icon: <ColorLensIcon /> },
-	Tipos: { url: '/home/attributes/type', icon: <DirectionsCarIcon /> },
-	Ciudades: { url: '/home/attributes/city', icon: <LocationCityIcon /> },
+	Colores: { url: '/home/attribute/color', icon: <ColorLensIcon /> },
+	Marcas: { url: '/home/attribute/brand', icon: <ColorLensIcon /> },
+	Modelos: { url: '/home/attribute/model', icon: <ColorLensIcon /> },
+	Tipos: { url: '/home/attribute/type', icon: <DirectionsCarIcon /> },
+	Ciudades: { url: '/home/attribute/city', icon: <LocationCityIcon /> },
 };
 
 export default function Attributes() {

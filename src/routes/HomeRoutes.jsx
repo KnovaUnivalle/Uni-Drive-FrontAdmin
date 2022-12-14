@@ -10,7 +10,7 @@ export default function HomeRoutes() {
 			<Route path='profile' element={<Profile />} />
 			<Route path='/' element={<DashBoard />} />
 			<Route path='*' element={<NotFound />} />
-			<Route path='attributes/*' element={<Attributes />} />
+			<Route path='attribute/*' element={<Attributes />} />
 		</Routes>
 	);
 }
