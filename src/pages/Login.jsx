@@ -25,7 +25,7 @@ const theme = createTheme({
 export default function Login() {
 	const { token, login } = useAuth();
 	if (token) {
-		return <Navigate to='/'></Navigate>;
+		return <Navigate to='/home'></Navigate>;
 	}
 	const [credentials, setCredentials] = useState({
 		email: '',
