@@ -13,23 +13,50 @@ import { useTheme } from '@mui/material/styles';
 export default function AttributeCard({ attribute }) {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-	const [data, setChecked] = useState({
-		active: attribute.active,
-		name: attribute.name,
+	const [edit, setEdit] = useState(true);
+	const [change, setChange] = useState({
+		active: true,
+		name: true,
 	});
+	const [data, setData] = useState(attribute);
 
 	const handleChangeSwitch = e => {
-		setChecked({
+		const { checked } = e.target;
+		setData({
 			...data,
-			active: e.target.checked,
+			active: checked,
 		});
-		console.log(data);
+		if (checked === attribute.active) {
+			setChange({ ...change, active: true });
+		} else {
+			setChange({ ...change, active: false });
+		}
 	};
 
 	const handleChangeText = e => {
-		setChecked({
+		const { value } = e.target;
+		setData({
 			...data,
-			name: e.target.value,
+			name: value,
+		});
+		if (value === attribute.name) {
+			setChange({ ...change, name: true });
+		} else {
+			setChange({ ...change, name: false });
+		}
+	};
+
+	const handleEditButton = e => {
+		setEdit(!edit);
+		setData(attribute);
+	};
+
+	const handleSubmitButton = e => {
+		console.log('send');
+		setEdit(true);
+		setChange({
+			active: true,
+			name: true,
 		});
 	};
 
@@ -46,6 +73,7 @@ export default function AttributeCard({ attribute }) {
 					<Typography>ID: {attribute.id}</Typography>
 				</div>
 				<form
+					onSubmit={handleSubmitButton}
 					style={{
 						display: 'flex',
 						flexWrap: 'wrap',
@@ -60,12 +88,14 @@ export default function AttributeCard({ attribute }) {
 						style={{
 							width: isMobile ? '65%' : '70%',
 						}}
+						disabled={edit}
 					/>
 					<div style={{ display: 'block' }}>
 						<Switch
 							checked={data.active}
 							onChange={handleChangeSwitch}
 							name={'active'}
+							disabled={edit}
 						/>
 						<Typography align='center'>
 							{data.active ? 'Activo' : 'Inactivo'}
@@ -79,10 +109,21 @@ export default function AttributeCard({ attribute }) {
 							marginTop: '0.5rem',
 						}}
 					>
-						<Button variant='contained' size='small'>
-							editar
+						<Button
+							variant='contained'
+							size='small'
+							color={edit ? 'primary' : 'error'}
+							onClick={handleEditButton}
+						>
+							{edit ? 'Editar' : 'Cancelar'}
 						</Button>
-						<Button variant='contained' type='submit' size='small'>
+						<Button
+							variant='contained'
+							onClick={handleSubmitButton}
+							color='success'
+							size='small'
+							disabled={change.name && change.active}
+						>
 							Guardar
 						</Button>
 					</div>
