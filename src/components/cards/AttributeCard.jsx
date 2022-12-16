@@ -16,7 +16,7 @@ export default function AttributeCard({ attribute }) {
 	const [edit, setEdit] = useState(true);
 	const [change, setChange] = useState({
 		active: true,
-		name: true,
+		description: true,
 	});
 	const [data, setData] = useState(attribute);
 	const [original, setOriginal] = useState(attribute);
@@ -36,14 +36,16 @@ export default function AttributeCard({ attribute }) {
 
 	const handleChangeText = e => {
 		const { value } = e.target;
+		const capitalize = value.charAt(0).toUpperCase() + value.slice(1);
 		setData({
 			...data,
-			name: value,
+			description: capitalize,
 		});
-		if (value === original.name) {
-			setChange({ ...change, name: true });
+		console.log(capitalize.length);
+		if (capitalize === original.description || capitalize.length === 0) {
+			setChange({ ...change, description: true });
 		} else {
-			setChange({ ...change, name: false });
+			setChange({ ...change, description: false });
 		}
 	};
 
@@ -57,7 +59,7 @@ export default function AttributeCard({ attribute }) {
 		setEdit(true);
 		setChange({
 			active: true,
-			name: true,
+			description: true,
 		});
 		setOriginal(data);
 	};
@@ -83,9 +85,9 @@ export default function AttributeCard({ attribute }) {
 					}}
 				>
 					<TextField
-						label={'Nombre'}
-						name={'name'}
-						value={data.name}
+						label={'Descripción'}
+						description={'description'}
+						value={data.description}
 						onChange={handleChangeText}
 						style={{
 							width: isMobile ? '65%' : '70%',
@@ -96,7 +98,7 @@ export default function AttributeCard({ attribute }) {
 						<Switch
 							checked={data.active}
 							onChange={handleChangeSwitch}
-							name={'active'}
+							description={'active'}
 							disabled={edit}
 						/>
 						<Typography align='center'>
@@ -124,7 +126,7 @@ export default function AttributeCard({ attribute }) {
 							onClick={handleSubmitButton}
 							color='success'
 							size='small'
-							disabled={change.name && change.active}
+							disabled={change.description && change.active}
 						>
 							Guardar
 						</Button>
