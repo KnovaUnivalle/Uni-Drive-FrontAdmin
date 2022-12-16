@@ -37,23 +37,29 @@ export default function AttributeCard({ attribute }) {
 		<Card
 			sx={{
 				margin: '0.8rem',
-				minWidth: '30rem',
-				flex: isMobile ? '1 1 auto' : '0 1 32.96%',
+				minWidth: '15rem',
+				flex: isMobile ? '1 1 auto' : '0 1 30%',
 			}}
 		>
 			<CardContent>
+				<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+					<Typography>ID: {attribute.id}</Typography>
+				</div>
 				<form
 					style={{
 						display: 'flex',
+						flexWrap: 'wrap',
 						justifyContent: 'space-between',
 					}}
 				>
-					<Typography mt={2}>ID: {attribute.id}</Typography>
 					<TextField
 						label={'Nombre'}
 						name={'name'}
 						value={data.name}
 						onChange={handleChangeText}
+						style={{
+							width: isMobile ? '65%' : '70%',
+						}}
 					/>
 					<div style={{ display: 'block' }}>
 						<Switch
@@ -68,19 +74,15 @@ export default function AttributeCard({ attribute }) {
 					<div
 						style={{
 							display: 'flex',
-							flexDirection: 'column',
 							justifyContent: 'space-between',
+							width: '100%',
+							marginTop: '0.5rem',
 						}}
 					>
 						<Button variant='contained' size='small'>
 							editar
 						</Button>
-						<Button
-							variant='contained'
-							type='submit'
-							size='small'
-							style={{ marginTop: '0.5rem' }}
-						>
+						<Button variant='contained' type='submit' size='small'>
 							Guardar
 						</Button>
 					</div>
