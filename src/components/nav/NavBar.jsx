@@ -96,7 +96,10 @@ export default function NavBar() {
 								<MenuItem
 									key={page}
 									onClose={handleCloseNavMenu}
-									onClick={() => navigate(pagesUrl[page], { replace: true })}
+									onClick={() => {
+										navigate(pagesUrl[page], { replace: true });
+										handleCloseNavMenu();
+									}}
 								>
 									<Typography textAlign='center'>{page}</Typography>
 								</MenuItem>
