@@ -19,6 +19,7 @@ export default function AttributeCard({ attribute }) {
 		name: true,
 	});
 	const [data, setData] = useState(attribute);
+	const [original, setOriginal] = useState(attribute);
 
 	const handleChangeSwitch = e => {
 		const { checked } = e.target;
@@ -26,7 +27,7 @@ export default function AttributeCard({ attribute }) {
 			...data,
 			active: checked,
 		});
-		if (checked === attribute.active) {
+		if (checked === original.active) {
 			setChange({ ...change, active: true });
 		} else {
 			setChange({ ...change, active: false });
@@ -39,7 +40,7 @@ export default function AttributeCard({ attribute }) {
 			...data,
 			name: value,
 		});
-		if (value === attribute.name) {
+		if (value === original.name) {
 			setChange({ ...change, name: true });
 		} else {
 			setChange({ ...change, name: false });
@@ -48,7 +49,7 @@ export default function AttributeCard({ attribute }) {
 
 	const handleEditButton = e => {
 		setEdit(!edit);
-		setData(attribute);
+		setData(original);
 	};
 
 	const handleSubmitButton = e => {
@@ -58,6 +59,7 @@ export default function AttributeCard({ attribute }) {
 			active: true,
 			name: true,
 		});
+		setOriginal(data);
 	};
 
 	return (
