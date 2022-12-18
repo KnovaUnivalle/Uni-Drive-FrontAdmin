@@ -15,7 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 
-export default function Add({ route, addFunction }) {
+export default function AddAttribute({ route, addFunction }) {
 	const { create } = useFetch();
 	const [open, setOpen] = useState(false);
 	const [data, setData] = useState({

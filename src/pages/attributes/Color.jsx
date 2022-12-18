@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Add from '../../components/buttons/Add';
+import AddAttribute from '../../components/buttons/AddAttribute';
 import AttributeCard from '../../components/cards/AttributeCard';
 import { useFetch } from '../../hooks/useFetch';
 
@@ -27,7 +27,7 @@ export default function Color() {
 					<AttributeCard attribute={color} key={color.id} />
 				))}
 			</div>
-			<Add route={'vehicle/color'} addFunction={setNewColor} />
+			<AddAttribute route={'vehicle/color'} addFunction={setNewColor} />
 		</>
 	);
 }
