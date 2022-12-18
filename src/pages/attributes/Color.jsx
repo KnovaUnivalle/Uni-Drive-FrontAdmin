@@ -1,22 +1,20 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import AttributeCard from '../../components/cards/AttributeCard';
-import { useAuth } from '../../hooks/useAuth';
-import { getColors } from '../../services/Attributes.service';
+import { useFetch } from '../../hooks/useFetch';
 
 export default function Color() {
+	const { get } = useFetch();
 	const [colors, setColors] = useState([]);
-	const { token } = useAuth();
 
-	const loadColors = async key => {
-		const res = await getColors(key);
+	const loadColors = async () => {
+		const res = await get('vehicle/allColor');
 		setColors(res);
-		console.log(res);
 	};
 
 	useEffect(() => {
-		loadColors(token);
-	}, [token]);
+		loadColors();
+	}, []);
 
 	return (
 		<>
