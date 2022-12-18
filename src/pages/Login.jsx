@@ -57,7 +57,7 @@ export default function Login() {
 
 	const handleAlertClose = () => setAlert(false);
 
-	const handleSubmitButton = async e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
 		if (validCredentials.email && validCredentials.password) {
 			const res = await loginService(credentials);
@@ -96,7 +96,7 @@ export default function Login() {
 						<Typography variant='h4'>
 							<strong>Inicio de sesión</strong>
 						</Typography>
-						<form>
+						<form onSubmit={handleSubmit}>
 							<TextField
 								key={'email'}
 								name={'email'}
@@ -130,7 +130,7 @@ export default function Login() {
 										: 'Formato de contraseña no valido'
 								}
 							></TextField>
-							<Button variant='contained' onClick={handleSubmitButton}>
+							<Button variant='contained' type='submit'>
 								Iniciar sesión
 							</Button>
 						</form>

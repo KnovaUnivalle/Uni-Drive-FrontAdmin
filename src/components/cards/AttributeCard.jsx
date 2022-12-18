@@ -41,7 +41,6 @@ export default function AttributeCard({ attribute }) {
 			...data,
 			description: capitalize,
 		});
-		console.log(capitalize.length);
 		if (capitalize === original.description || capitalize.length === 0) {
 			setChange({ ...change, description: true });
 		} else {
@@ -54,7 +53,8 @@ export default function AttributeCard({ attribute }) {
 		setData(original);
 	};
 
-	const handleSubmitButton = e => {
+	const handleSubmit = e => {
+		e.preventDefault();
 		console.log('send');
 		setEdit(true);
 		setChange({
@@ -77,7 +77,7 @@ export default function AttributeCard({ attribute }) {
 					<Typography>ID: {attribute.id}</Typography>
 				</div>
 				<form
-					onSubmit={handleSubmitButton}
+					onSubmit={handleSubmit}
 					style={{
 						display: 'flex',
 						flexWrap: 'wrap',
@@ -123,7 +123,7 @@ export default function AttributeCard({ attribute }) {
 						</Button>
 						<Button
 							variant='contained'
-							onClick={handleSubmitButton}
+							type='submit'
 							color='success'
 							size='small'
 							disabled={change.description && change.active}
