@@ -124,7 +124,6 @@ export default function AttributeCard({ attribute }) {
 						<Button
 							variant='contained'
 							type='submit'
-							color='success'
 							size='small'
 							disabled={change.description && change.active}
 						>

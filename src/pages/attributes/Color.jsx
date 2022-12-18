@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
+import Add from '../../components/buttons/Add';
 import AttributeCard from '../../components/cards/AttributeCard';
 import { useFetch } from '../../hooks/useFetch';
 
@@ -12,17 +12,22 @@ export default function Color() {
 		setColors(res);
 	};
 
+	const setNewColor = data => {
+		setColors([...colors, data]);
+	};
+
 	useEffect(() => {
 		loadColors();
 	}, []);
 
 	return (
 		<>
-			<Box style={{ display: 'flex', flexWrap: 'wrap', margin: '0.5rem' }}>
+			<div style={{ display: 'flex', flexWrap: 'wrap', margin: '0.5rem' }}>
 				{colors.map(color => (
 					<AttributeCard attribute={color} key={color.id} />
 				))}
-			</Box>
+			</div>
+			<Add route={'vehicle/color'} addFunction={setNewColor} />
 		</>
 	);
 }
