@@ -14,14 +14,18 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
 import { useFetch } from '../../hooks/useFetch';
+import WarningAlert from '../alerts/WarningAlert';
 
 export default function AddAttribute({ route, addFunction }) {
 	const { create } = useFetch();
+	const [alert, setAlert] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [data, setData] = useState({
 		active: true,
 		description: '',
 	});
+
+	const handleAlertClose = () => setAlert(false);
 
 	const handleChangeSwitch = e => {
 		const { checked } = e.target;
@@ -50,6 +54,8 @@ export default function AddAttribute({ route, addFunction }) {
 		if (res.status === 201) {
 			setOpen(false);
 			addFunction(await res.json());
+		} else if (res.status === 409) {
+			setAlert(true);
 		}
 	};
 
@@ -119,6 +125,11 @@ export default function AddAttribute({ route, addFunction }) {
 					</Button>
 				</DialogActions>
 			</Dialog>
+			<WarningAlert
+				open={alert}
+				onClose={handleAlertClose}
+				message={'Elemento duplicado, cambia la descripción.'}
+			/>
 		</>
 	);
 }
