@@ -8,7 +8,7 @@ import NotFound from '../pages/NotFound';
 export default function AppRoutes() {
 	return (
 		<Routes>
-			<Route path='/' element={<Initial />}></Route>
+			<Route path='/' element={<Initial />} />
 			<Route
 				path='home/*'
 				element={
@@ -17,8 +17,8 @@ export default function AppRoutes() {
 					</RouteGuard>
 				}
 			></Route>
-			<Route path='/login' element={<Login />}></Route>
-			<Route path='*' element={<NotFound />}></Route>
+			<Route path='/login' element={<Login />} />
+			<Route path='*' element={<NotFound />} />
 		</Routes>
 	);
 }

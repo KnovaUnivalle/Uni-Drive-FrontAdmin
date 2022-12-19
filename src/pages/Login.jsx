@@ -25,7 +25,7 @@ const theme = createTheme({
 export default function Login() {
 	const { token, login } = useAuth();
 	if (token) {
-		return <Navigate to='/'></Navigate>;
+		return <Navigate to='/home'></Navigate>;
 	}
 	const [credentials, setCredentials] = useState({
 		email: '',
@@ -140,7 +140,7 @@ export default function Login() {
 			<ErrorAlert
 				open={alert}
 				onClose={handleAlertClose}
-				message={'Credenciales incorrectas'}
+				message={'Credenciales incorrectas.'}
 			/>
 			<footer style={{ textAlign: 'end', padding: '2rem' }}>
 				<Link to='/'>INICIO</Link>

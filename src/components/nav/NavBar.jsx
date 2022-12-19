@@ -10,7 +10,8 @@ import {
 import { Box, Container } from '@mui/system';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import Profile from './buttons/Account';
+import Profile from '../buttons/Account';
+import { useNavigate } from 'react-router-dom';
 
 const pages = [
 	'Pasajeros',
@@ -22,6 +23,15 @@ const pages = [
 
 export default function NavBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
+	const navigate = useNavigate();
+
+	const pagesUrl = {
+		Pasajeros: '/home/rider',
+		Conductores: '/home/bidder',
+		Vehiculos: '/home/vehicle',
+		Informes: '/home/report',
+		Atributos: '/home/attribute',
+	};
 
 	const handleOpenNavMenu = e => {
 		setAnchorElNav(e.currentTarget);
@@ -35,18 +45,24 @@ export default function NavBar() {
 		<AppBar position='fixed' color='inherit'>
 			<Container maxWidth='xl'>
 				<Toolbar disableGutters>
-					<Typography
-						variant='h6'
-						noWrap
+					<Button
 						sx={{
-							mr: 3,
+							color: 'black',
 							display: { xs: 'none', md: 'flex' },
-							fontFamily: 'monospace',
-							fontWeight: 700,
 						}}
+						onClick={() => navigate('/home/')}
 					>
-						UniDrive Manager
-					</Typography>
+						<Typography
+							variant='h6'
+							noWrap
+							sx={{
+								mr: 3,
+								fontWeight: 700,
+							}}
+						>
+							UniDrive Manager
+						</Typography>
+					</Button>
 					<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 						<IconButton
 							size='large'
@@ -77,30 +93,45 @@ export default function NavBar() {
 							}}
 						>
 							{pages.map(page => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
+								<MenuItem
+									key={page}
+									onClose={handleCloseNavMenu}
+									onClick={() => {
+										navigate(pagesUrl[page], { replace: true });
+										handleCloseNavMenu();
+									}}
+								>
 									<Typography textAlign='center'>{page}</Typography>
 								</MenuItem>
 							))}
 						</Menu>
 					</Box>
-					<Typography
-						variant='h6'
-						noWrap
-						href=''
+					<Button
 						sx={{
-							mr: 2,
+							color: 'black',
 							display: { xs: 'flex', md: 'none' },
+							justifyContent: 'initial',
 							flexGrow: 1,
-							fontWeight: 700,
 						}}
+						onClick={() => navigate('/home')}
 					>
-						UniDrive Manager
-					</Typography>
+						<Typography
+							variant='h6'
+							noWrap
+							sx={{
+								mr: 2,
+								fontWeight: 700,
+							}}
+						>
+							UniDrive Manager
+						</Typography>
+					</Button>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map(page => (
 							<Button
 								key={page}
-								onClick={handleCloseNavMenu}
+								onClose={handleCloseNavMenu}
+								onClick={() => navigate(pagesUrl[page], { replace: true })}
 								sx={{ my: 2, color: 'black', display: 'block' }}
 							>
 								{page}
