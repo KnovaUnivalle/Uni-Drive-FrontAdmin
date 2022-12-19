@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Brand from '../pages/attributes/Brand';
+import City from '../pages/attributes/City';
 import Color from '../pages/attributes/Color';
 import Type from '../pages/attributes/Type';
 import Year from '../pages/attributes/Year';
@@ -12,7 +13,7 @@ export default function AttributesRoutes() {
 			<Route path='color' element={<Color />} />
 			<Route path='year' element={<Year />} />
 			<Route path='type' element={<Type />} />
-			<Route path='city' element={<Year />} />
+			<Route path='city' element={<City />} />
 		</Routes>
 	);
 }

@@ -9,7 +9,7 @@ const elements = ['Colores', 'Marcas', 'Modelos', 'Tipos', 'Ciudades'];
 const objectElements = {
 	Colores: { url: '/home/attribute/color', icon: <ColorLensIcon /> },
 	Marcas: { url: '/home/attribute/brand', icon: <ColorLensIcon /> },
-	Modelos: { url: '/home/attribute/model', icon: <ColorLensIcon /> },
+	Modelos: { url: '/home/attribute/year', icon: <ColorLensIcon /> },
 	Tipos: { url: '/home/attribute/type', icon: <DirectionsCarIcon /> },
 	Ciudades: { url: '/home/attribute/city', icon: <LocationCityIcon /> },
 };
