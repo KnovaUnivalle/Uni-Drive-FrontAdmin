@@ -3,12 +3,14 @@ import AddAttribute from '../../components/buttons/AddAttribute';
 import AttributeCard from '../../components/cards/AttributeCard';
 import { useFetch } from '../../hooks/useFetch';
 
+const route = 'vehicle/color';
+
 export default function Color() {
 	const { get } = useFetch();
 	const [colors, setColors] = useState([]);
 
 	const loadColors = async () => {
-		const res = await get('vehicle/allColor');
+		const res = await get(route);
 		setColors(res);
 	};
 
@@ -24,10 +26,10 @@ export default function Color() {
 		<>
 			<div style={{ display: 'flex', flexWrap: 'wrap', margin: '0.5rem' }}>
 				{colors.map(color => (
-					<AttributeCard attribute={color} key={color.id} />
+					<AttributeCard attribute={color} key={color.id} route={route} />
 				))}
 			</div>
-			<AddAttribute route={'vehicle/color'} addFunction={setNewColor} />
+			<AddAttribute route={route} addFunction={setNewColor} />
 		</>
 	);
 }
