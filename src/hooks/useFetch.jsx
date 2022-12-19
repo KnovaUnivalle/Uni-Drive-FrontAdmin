@@ -9,7 +9,7 @@ export function FetchProvider({ children }) {
 	const { token } = useAuth();
 
 	/**
-	 * To call fetch
+	 * To call fetch GET
 	 * @param {String} route
 	 * @returns
 	 */
@@ -28,8 +28,9 @@ export function FetchProvider({ children }) {
 			console.log(error);
 		}
 	};
+
 	/**
-	 * To call fetch
+	 * To call fetch POST
 	 * @param {String} route
 	 * @param {Object} data
 	 * @returns
@@ -52,7 +53,31 @@ export function FetchProvider({ children }) {
 		}
 	};
 
-	const value = useMemo(() => ({ get, create }), []);
+	/**
+	 * To call fetch PUT
+	 * @param {String} route
+	 * @param {Object} data
+	 * @returns
+	 */
+	const update = async (route, data) => {
+		try {
+			return await fetch(host + route, {
+				method: 'PUT',
+				mode: 'cors',
+				cache: 'default',
+				credentials: 'same-origin',
+				headers: {
+					Authorization: token,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			}).then(res => res);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const value = useMemo(() => ({ get, create, update }), []);
 	return (
 		<>
 			<FetchContext.Provider value={value}>{children}</FetchContext.Provider>
