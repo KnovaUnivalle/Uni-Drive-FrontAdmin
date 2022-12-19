@@ -14,15 +14,19 @@ export function FetchProvider({ children }) {
 	 * @returns
 	 */
 	const get = async route => {
-		return await fetch(host + route, {
-			method: 'GET',
-			mode: 'cors',
-			cache: 'default',
-			credentials: 'same-origin',
-			headers: {
-				Authorization: token,
-			},
-		}).then(res => res.json());
+		try {
+			return await fetch(host + route, {
+				method: 'GET',
+				mode: 'cors',
+				cache: 'default',
+				credentials: 'same-origin',
+				headers: {
+					Authorization: token,
+				},
+			}).then(res => res.json());
+		} catch (error) {
+			console.log(error);
+		}
 	};
 	/**
 	 * To call fetch
@@ -31,17 +35,21 @@ export function FetchProvider({ children }) {
 	 * @returns
 	 */
 	const create = async (route, data) => {
-		return await fetch(host + route, {
-			method: 'POST',
-			mode: 'cors',
-			cache: 'default',
-			credentials: 'same-origin',
-			headers: {
-				Authorization: token,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		}).then(res => res);
+		try {
+			return await fetch(host + route, {
+				method: 'POST',
+				mode: 'cors',
+				cache: 'default',
+				credentials: 'same-origin',
+				headers: {
+					Authorization: token,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			}).then(res => res);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const value = useMemo(() => ({ get, create }), []);

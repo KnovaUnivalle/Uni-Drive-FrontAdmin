@@ -140,7 +140,7 @@ export default function Login() {
 			<ErrorAlert
 				open={alert}
 				onClose={handleAlertClose}
-				message={'Credenciales incorrectas'}
+				message={'Credenciales incorrectas.'}
 			/>
 			<footer style={{ textAlign: 'end', padding: '2rem' }}>
 				<Link to='/'>INICIO</Link>
