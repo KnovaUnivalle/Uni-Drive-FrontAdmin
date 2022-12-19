@@ -9,17 +9,40 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
+import { useFetch } from '../../hooks/useFetch';
+import WarningAlert from '../alerts/WarningAlert';
+import InfoAlert from '../alerts/InfoAlert';
 
-export default function AttributeCard({ attribute }) {
+export default function AttributeCard({ attribute, route }) {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+	const { update } = useFetch();
 	const [edit, setEdit] = useState(true);
+	const [alert, setAlert] = useState({ info: false, warning: false });
 	const [change, setChange] = useState({
 		active: true,
 		description: true,
 	});
-	const [data, setData] = useState(attribute);
-	const [original, setOriginal] = useState(attribute);
+	const [data, setData] = useState({
+		active: attribute.active,
+		description: attribute.description,
+	});
+	const [original, setOriginal] = useState({
+		active: attribute.active,
+		description: attribute.description,
+	});
+
+	const handleWarningAlertClose = () =>
+		setAlert({
+			...alert,
+			warning: false,
+		});
+
+	const handleInfoAlertClose = () =>
+		setAlert({
+			...alert,
+			info: false,
+		});
 
 	const handleChangeSwitch = e => {
 		const { checked } = e.target;
@@ -51,17 +74,26 @@ export default function AttributeCard({ attribute }) {
 	const handleEditButton = e => {
 		setEdit(!edit);
 		setData(original);
-	};
-
-	const handleSubmit = e => {
-		e.preventDefault();
-		console.log('send');
-		setEdit(true);
 		setChange({
 			active: true,
 			description: true,
 		});
-		setOriginal(data);
+	};
+
+	const handleSubmit = async e => {
+		e.preventDefault();
+		const res = await update(route + '/' + attribute.id, data);
+		if (res.status === 201) {
+			setEdit(true);
+			setChange({
+				active: true,
+				description: true,
+			});
+			setOriginal(data);
+			setAlert({ ...alert, info: true });
+		} else if (res.status === 409) {
+			setAlert({ ...alert, warning: true });
+		}
 	};
 
 	return (
@@ -132,6 +164,16 @@ export default function AttributeCard({ attribute }) {
 					</div>
 				</form>
 			</CardContent>
+			<WarningAlert
+				open={alert.warning}
+				onClose={handleWarningAlertClose}
+				message={'Elemento duplicado, cambia la descripción.'}
+			/>
+			<InfoAlert
+				open={alert.info}
+				onClose={handleInfoAlertClose}
+				message={'Actualizado con éxito.'}
+			/>
 		</Card>
 	);
 }
