@@ -15,17 +15,28 @@ import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import WarningAlert from '../alerts/WarningAlert';
+import InfoAlert from '../alerts/InfoAlert';
 
 export default function AddAttribute({ route, addFunction }) {
 	const { create } = useFetch();
-	const [alert, setAlert] = useState(false);
 	const [open, setOpen] = useState(false);
+	const [alert, setAlert] = useState({ info: false, warning: false });
 	const [data, setData] = useState({
 		active: true,
 		description: '',
 	});
 
-	const handleAlertClose = () => setAlert(false);
+	const handleWarningAlertClose = () =>
+		setAlert({
+			...alert,
+			warning: false,
+		});
+
+	const handleInfoAlertClose = () =>
+		setAlert({
+			...alert,
+			info: false,
+		});
 
 	const handleChangeSwitch = e => {
 		const { checked } = e.target;
@@ -54,8 +65,9 @@ export default function AddAttribute({ route, addFunction }) {
 		if (res.status === 201) {
 			setOpen(false);
 			addFunction(await res.json());
+			setAlert({ ...alert, info: true });
 		} else if (res.status === 409) {
-			setAlert(true);
+			setAlert({ ...alert, warning: true });
 		}
 	};
 
@@ -126,9 +138,14 @@ export default function AddAttribute({ route, addFunction }) {
 				</DialogActions>
 			</Dialog>
 			<WarningAlert
-				open={alert}
-				onClose={handleAlertClose}
+				open={alert.warning}
+				onClose={handleWarningAlertClose}
 				message={'Elemento duplicado, cambia la descripción.'}
+			/>
+			<InfoAlert
+				open={alert.info}
+				onClose={handleInfoAlertClose}
+				message={'Creado con éxito.'}
 			/>
 		</>
 	);
