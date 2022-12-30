@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
-export default function SignIn() {
+export default function SignInButton() {
 	const { token } = useAuth();
 	const navigate = useNavigate();
 

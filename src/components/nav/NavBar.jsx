@@ -11,7 +11,7 @@ import { Box, Container } from '@mui/system';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
-import Account from '../buttons/Account';
+import AccountButton from '../buttons/AccountButton';
 
 const pages = [
 	'Pasajeros',
@@ -138,7 +138,7 @@ export default function NavBar() {
 							</Button>
 						))}
 					</Box>
-					<Account />
+					<AccountButton />
 				</Toolbar>
 			</Container>
 		</AppBar>

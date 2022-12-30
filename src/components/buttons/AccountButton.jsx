@@ -13,7 +13,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 const options = ['profile', 'home', 'logout'];
 
-export default function Account() {
+export default function AccountButton() {
 	const [anchorElUser, setAnchorElUser] = useState(null);
 	const navigate = useNavigate();
 	const { logout } = useAuth();
