@@ -17,7 +17,7 @@ import { useFetch } from '../../hooks/useFetch';
 import WarningAlert from '../alerts/WarningAlert';
 import InfoAlert from '../alerts/InfoAlert';
 
-export default function AddAttribute({ route, addFunction }) {
+export default function AddAttributeDialog({ route, addFunction }) {
 	const { create } = useFetch();
 	const [open, setOpen] = useState(false);
 	const [alert, setAlert] = useState({ info: false, warning: false });
