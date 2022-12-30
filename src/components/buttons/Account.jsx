@@ -13,7 +13,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 const options = ['profile', 'home', 'logout'];
 
-export default function Profile() {
+export default function Account() {
 	const [anchorElUser, setAnchorElUser] = useState(null);
 	const navigate = useNavigate();
 	const { logout } = useAuth();
@@ -46,7 +46,7 @@ export default function Profile() {
 
 	return (
 		<Box sx={{ flexGrow: 0 }}>
-			<Tooltip title='Open settings'>
+			<Tooltip title='Abrir opciones'>
 				<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 					<Avatar />
 				</IconButton>
