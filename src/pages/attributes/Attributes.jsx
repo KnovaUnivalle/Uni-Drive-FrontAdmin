@@ -4,12 +4,14 @@ import ColorLensIcon from '@mui/icons-material/ColorLens';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import AttributesRoutes from '../../routes/AttributesRoutes';
+import DiamondIcon from '@mui/icons-material/Diamond';
+import NumbersIcon from '@mui/icons-material/Numbers';
 
 const elements = ['Colores', 'Marcas', 'Modelos', 'Tipos', 'Ciudades'];
 const objectElements = {
 	Colores: { url: '/home/attribute/color', icon: <ColorLensIcon /> },
-	Marcas: { url: '/home/attribute/brand', icon: <ColorLensIcon /> },
-	Modelos: { url: '/home/attribute/year', icon: <ColorLensIcon /> },
+	Marcas: { url: '/home/attribute/brand', icon: <DiamondIcon /> },
+	Modelos: { url: '/home/attribute/year', icon: <NumbersIcon /> },
 	Tipos: { url: '/home/attribute/type', icon: <DirectionsCarIcon /> },
 	Ciudades: { url: '/home/attribute/city', icon: <LocationCityIcon /> },
 };
