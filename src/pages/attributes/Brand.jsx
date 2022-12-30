@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import AddAttribute from '../../components/buttons/AddAttribute';
+import AddAttribute from '../../components/dialogs/AddAttribute';
 import AttributeCard from '../../components/cards/AttributeCard';
 import { useFetch } from '../../hooks/useFetch';
 

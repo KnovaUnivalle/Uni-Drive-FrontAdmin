@@ -66,6 +66,10 @@ export default function AddAttribute({ route, addFunction }) {
 			setOpen(false);
 			addFunction(await res.json());
 			setAlert({ ...alert, info: true });
+			setData({
+				active: true,
+				description: '',
+			});
 		} else if (res.status === 409) {
 			setAlert({ ...alert, warning: true });
 		}
