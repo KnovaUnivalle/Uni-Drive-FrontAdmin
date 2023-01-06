@@ -19,7 +19,7 @@ import InfoAlert from '../alerts/InfoAlert';
 
 export default function AddAttributeDialog({ route, addFunction }) {
 	const { create } = useFetch();
-	const [open, setOpen] = useState(false);
+	const [openDialog, setOpenDialog] = useState(false);
 	const [alert, setAlert] = useState({ info: false, warning: false });
 	const [data, setData] = useState({
 		active: true,
@@ -55,45 +55,42 @@ export default function AddAttributeDialog({ route, addFunction }) {
 		});
 	};
 
-	const handleClickOpen = () => {
-		setOpen(true);
+	const handleClickOpenDialog = () => {
+		setOpenDialog(true);
+	};
+
+	const handleCloseDialog = () => {
+		setData({
+			active: true,
+			description: '',
+		});
+		setOpenDialog(false);
 	};
 
 	const handleSubmit = async e => {
 		e.preventDefault();
 		const res = await create(route, data);
 		if (res.status === 201) {
-			setOpen(false);
+			handleCloseDialog();
 			addFunction(await res.json());
 			setAlert({ ...alert, info: true });
-			setData({
-				active: true,
-				description: '',
-			});
 		} else if (res.status === 409) {
 			setAlert({ ...alert, warning: true });
 		}
 	};
 
-	const handleClose = () => {
-		setData({
-			active: true,
-			description: '',
-		});
-		setOpen(false);
-	};
 	return (
 		<>
 			<Tooltip title='Añadir'>
 				<Fab
-					onClick={handleClickOpen}
+					onClick={handleClickOpenDialog}
 					sx={{ position: 'fixed', bottom: 18, right: 16 }}
 				>
 					<AddIcon />
 				</Fab>
 			</Tooltip>
-			<Dialog open={open} onClose={handleClose}>
-				<DialogTitle>Añadir elemento</DialogTitle>
+			<Dialog open={openDialog} onClose={handleCloseDialog}>
+				<DialogTitle>Añadir Elemento</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
 						Para crear un elemento proporcione una descripción y su estado
@@ -127,19 +124,19 @@ export default function AddAttributeDialog({ route, addFunction }) {
 							</Typography>
 						</div>
 					</div>
+					<DialogActions style={{ paddingBottom: '0' }}>
+						<Button color='error' onClick={handleCloseDialog}>
+							Cancelar
+						</Button>
+						<Button
+							type='submit'
+							onClick={handleSubmit}
+							disabled={data.description.length === 0}
+						>
+							Guardar
+						</Button>
+					</DialogActions>
 				</DialogContent>
-				<DialogActions>
-					<Button color='error' onClick={handleClose}>
-						Cancelar
-					</Button>
-					<Button
-						type='submit'
-						onClick={handleSubmit}
-						disabled={data.description.length === 0}
-					>
-						Guardar
-					</Button>
-				</DialogActions>
 			</Dialog>
 			<WarningAlert
 				open={alert.warning}
