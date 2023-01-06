@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import AttributeCard from '../cards/AttributeCard';
 import AddAttributeDialog from '../dialogs/AddAttributeDialog';
+import SearchAttributeDialog from '../dialogs/SearchAttributeDialog';
 
 export default function AttributeDeck({ route }) {
 	const { get } = useFetch();
+	const searchParams = useLocation().search;
 	const [attributes, setAttributes] = useState([]);
 
 	const loadAttributes = async () => {
-		const res = await get(route);
+		const res = await get(route + searchParams);
 		setAttributes(res);
 	};
 
@@ -18,7 +21,7 @@ export default function AttributeDeck({ route }) {
 
 	useEffect(() => {
 		loadAttributes();
-	}, []);
+	}, [searchParams]);
 
 	return (
 		<>
@@ -31,6 +34,7 @@ export default function AttributeDeck({ route }) {
 					/>
 				))}
 			</div>
+			<SearchAttributeDialog route={route} />
 			<AddAttributeDialog route={route} addFunction={setNewBrand} />
 		</>
 	);
