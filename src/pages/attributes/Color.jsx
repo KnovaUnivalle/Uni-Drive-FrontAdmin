@@ -1,6 +1,6 @@
 import AttributeDeck from '../../components/decks/AttributeDeck';
 
-const route = 'vehicle/color';
+const route = 'attribute/color';
 
 export default function Color() {
 	return <AttributeDeck route={route} />;
