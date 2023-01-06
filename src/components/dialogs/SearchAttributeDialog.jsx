@@ -20,7 +20,7 @@ const kinds = { id: 'ID', description: 'Descripción' };
 
 export default function SearchAttributeDialog({ route }) {
 	const [openDialog, setOpenDialog] = useState(false);
-	const [kind, setKind] = useState('id');
+	const [kind, setKind] = useState('description');
 	const [search, setSearch] = useState('');
 
 	const handleClickOpenDialog = () => {
@@ -40,10 +40,13 @@ export default function SearchAttributeDialog({ route }) {
 	};
 
 	const handleCloseDialog = () => {
+		setSearch('');
 		setOpenDialog(false);
 	};
 
-	const handleSubmit = async e => {};
+	const handleSubmit = async e => {
+		e.preventDefault();
+	};
 
 	return (
 		<>
@@ -102,7 +105,9 @@ export default function SearchAttributeDialog({ route }) {
 							<Button color='error' onClick={handleCloseDialog}>
 								Cancelar
 							</Button>
-							<Button type='submit'>Buscar</Button>
+							<Button type='submit' disabled={search.length === 0}>
+								Buscar
+							</Button>
 						</DialogActions>
 					</form>
 				</DialogContent>

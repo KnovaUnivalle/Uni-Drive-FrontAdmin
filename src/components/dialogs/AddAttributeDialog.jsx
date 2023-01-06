@@ -96,46 +96,45 @@ export default function AddAttributeDialog({ route, addFunction }) {
 						Para crear un elemento proporcione una descripción y su estado
 						inicial, activo por defecto.
 					</DialogContentText>
-					<div
-						style={{
-							display: 'flex',
-						}}
-					>
-						<TextField
-							autoFocus
-							margin='dense'
-							name='description'
-							label='Descripción'
-							variant='standard'
-							value={data.description}
-							onChange={handleChangeText}
-							fullWidth
-						/>
-
-						<Typography mt={2}>Estado:</Typography>
-						<div style={{ display: 'block' }}>
-							<Switch
-								checked={data.active}
-								description={'active'}
-								onChange={handleChangeSwitch}
-							/>
-							<Typography align='center'>
-								{data.active ? 'Activo' : 'Inactivo'}
-							</Typography>
-						</div>
-					</div>
-					<DialogActions style={{ paddingBottom: '0' }}>
-						<Button color='error' onClick={handleCloseDialog}>
-							Cancelar
-						</Button>
-						<Button
-							type='submit'
-							onClick={handleSubmit}
-							disabled={data.description.length === 0}
+					<form onSubmit={handleSubmit}>
+						{' '}
+						<div
+							style={{
+								display: 'flex',
+							}}
 						>
-							Guardar
-						</Button>
-					</DialogActions>
+							<TextField
+								autoFocus
+								margin='dense'
+								name='description'
+								label='Descripción'
+								variant='standard'
+								value={data.description}
+								onChange={handleChangeText}
+								fullWidth
+							/>
+
+							<Typography mt={2}>Estado:</Typography>
+							<div style={{ display: 'block' }}>
+								<Switch
+									checked={data.active}
+									description={'active'}
+									onChange={handleChangeSwitch}
+								/>
+								<Typography align='center'>
+									{data.active ? 'Activo' : 'Inactivo'}
+								</Typography>
+							</div>
+						</div>
+						<DialogActions style={{ paddingBottom: '0' }}>
+							<Button color='error' onClick={handleCloseDialog}>
+								Cancelar
+							</Button>
+							<Button type='submit' disabled={data.description.length === 0}>
+								Buscar
+							</Button>
+						</DialogActions>
+					</form>
 				</DialogContent>
 			</Dialog>
 			<WarningAlert
