@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
 
 const kinds = { id: 'ID', description: 'Descripción' };
 
@@ -22,6 +23,7 @@ export default function SearchAttributeDialog({ route }) {
 	const [openDialog, setOpenDialog] = useState(false);
 	const [kind, setKind] = useState('description');
 	const [search, setSearch] = useState('');
+	const navigate = useNavigate();
 
 	const handleClickOpenDialog = () => {
 		setOpenDialog(true);
@@ -46,6 +48,9 @@ export default function SearchAttributeDialog({ route }) {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
+		const routeSearch = '/home/' + route + '?' + kind + '=' + search;
+		navigate(routeSearch, { replace: true });
+		handleCloseDialog();
 	};
 
 	return (
