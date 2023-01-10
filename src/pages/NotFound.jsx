@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom';
+import { basicRoutes } from '../utils/RoutesNotFound';
 
-export default function NotFound() {
+export default function NotFound({
+	title = 'Página no encontrada',
+	routes = basicRoutes,
+}) {
 	return (
 		<div style={{ textAlign: 'center' }}>
 			<h1>Error 404</h1>
-			<h2>Página no encontrada</h2>
+			<h2>{title}</h2>
 			<section>
 				<p>Enlaces que pueden ayudar:</p>
-				<Link to='/'>
-					<p>INICIO</p>
-				</Link>
-				<Link to='/home'>
-					<p>HOME</p>
-				</Link>
+				{routes.map(route => (
+					<Link key={route.name} to={route.link}>
+						<p>{route.name}</p>
+					</Link>
+				))}
 			</section>
 		</div>
 	);
