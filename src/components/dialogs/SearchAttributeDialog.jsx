@@ -76,7 +76,6 @@ export default function SearchAttributeDialog({ route }) {
 							}}
 						>
 							<TextField
-								autoFocus
 								margin='dense'
 								name={kind}
 								label={kinds[kind]}

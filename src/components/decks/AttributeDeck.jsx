@@ -1,20 +1,33 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
+import NotFound from '../../pages/NotFound';
 import BackFlatButton from '../buttons/BackFlatButton';
 import AttributeCard from '../cards/AttributeCard';
 import AddAttributeDialog from '../dialogs/AddAttributeDialog';
 import SearchAttributeDialog from '../dialogs/SearchAttributeDialog';
+import { attributeRoutes } from '../../utils/RoutesNotFound';
+import Load from '../tools/Load';
 
-export default function AttributeDeck({ route }) {
+export default function AttributeDeck({ route, routeNotFound }) {
 	const { get } = useFetch();
+	const routesNotFound = routeNotFound
+		? [...attributeRoutes, routeNotFound]
+		: attributeRoutes;
 	const searchParams = useLocation().search;
 	const [attributes, setAttributes] = useState([]);
+	const [charging, setCharging] = useState(true);
+	const [notElements, setNotElements] = useState(false);
 
 	const loadAttributes = async () => {
-		setAttributes([]);
+		setCharging(true);
 		const res = await get(route + searchParams);
-		setAttributes(res);
+		if (res.status === 404) {
+			setNotElements(true);
+		} else {
+			setCharging(false);
+			setAttributes(await res.json());
+		}
 	};
 
 	const setNewBrand = data => {
@@ -22,8 +35,19 @@ export default function AttributeDeck({ route }) {
 	};
 
 	useEffect(() => {
+		setNotElements(false);
 		loadAttributes();
 	}, [searchParams]);
+
+	if (notElements) {
+		return (
+			<NotFound routes={routesNotFound} title={'Elementos no encontrados'} />
+		);
+	}
+
+	if (charging) {
+		return <Load />;
+	}
 
 	return (
 		<>

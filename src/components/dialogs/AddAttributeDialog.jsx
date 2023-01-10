@@ -104,7 +104,6 @@ export default function AddAttributeDialog({ route, addFunction }) {
 							}}
 						>
 							<TextField
-								autoFocus
 								margin='dense'
 								name='description'
 								label='Descripción'
