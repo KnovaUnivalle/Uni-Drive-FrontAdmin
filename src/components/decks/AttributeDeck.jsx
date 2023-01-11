@@ -9,11 +9,9 @@ import SearchAttributeDialog from '../dialogs/SearchAttributeDialog';
 import { attributeRoutes } from '../../utils/RoutesNotFound';
 import Load from '../tools/Load';
 
-export default function AttributeDeck({ route, routeNotFound }) {
+export default function AttributeDeck({ route, routeNotFound = [] }) {
 	const { get } = useFetch();
-	const routesNotFound = routeNotFound
-		? [...attributeRoutes, routeNotFound]
-		: attributeRoutes;
+	const routesNotFound = attributeRoutes.concat(routeNotFound);
 	const searchParams = useLocation().search;
 	const [attributes, setAttributes] = useState([]);
 	const [charging, setCharging] = useState(true);
@@ -23,6 +21,7 @@ export default function AttributeDeck({ route, routeNotFound }) {
 		setCharging(true);
 		const res = await get(route + searchParams);
 		if (res.status === 404) {
+			setCharging(false);
 			setNotElements(true);
 		} else {
 			setCharging(false);
