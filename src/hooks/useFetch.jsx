@@ -23,7 +23,7 @@ export function FetchProvider({ children }) {
 				headers: {
 					Authorization: token,
 				},
-			}).then(res => res.json());
+			}).then(res => res);
 		} catch (error) {
 			console.log(error);
 		}

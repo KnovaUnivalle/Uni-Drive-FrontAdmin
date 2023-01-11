@@ -10,8 +10,8 @@ import {
 import { Box, Container } from '@mui/system';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import Profile from '../buttons/Account';
 import { useNavigate } from 'react-router-dom';
+import AccountButton from '../buttons/AccountButton';
 
 const pages = [
 	'Pasajeros',
@@ -138,7 +138,7 @@ export default function NavBar() {
 							</Button>
 						))}
 					</Box>
-					<Profile />
+					<AccountButton />
 				</Toolbar>
 			</Container>
 		</AppBar>

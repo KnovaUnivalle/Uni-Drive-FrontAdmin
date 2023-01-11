@@ -17,9 +17,9 @@ import { useFetch } from '../../hooks/useFetch';
 import WarningAlert from '../alerts/WarningAlert';
 import InfoAlert from '../alerts/InfoAlert';
 
-export default function AddAttribute({ route, addFunction }) {
+export default function AddAttributeDialog({ route, addFunction }) {
 	const { create } = useFetch();
-	const [open, setOpen] = useState(false);
+	const [openDialog, setOpenDialog] = useState(false);
 	const [alert, setAlert] = useState({ info: false, warning: false });
 	const [data, setData] = useState({
 		active: true,
@@ -55,15 +55,23 @@ export default function AddAttribute({ route, addFunction }) {
 		});
 	};
 
-	const handleClickOpen = () => {
-		setOpen(true);
+	const handleClickOpenDialog = () => {
+		setOpenDialog(true);
+	};
+
+	const handleCloseDialog = () => {
+		setData({
+			active: true,
+			description: '',
+		});
+		setOpenDialog(false);
 	};
 
 	const handleSubmit = async e => {
 		e.preventDefault();
 		const res = await create(route, data);
 		if (res.status === 201) {
-			setOpen(false);
+			handleCloseDialog();
 			addFunction(await res.json());
 			setAlert({ ...alert, info: true });
 		} else if (res.status === 409) {
@@ -71,71 +79,62 @@ export default function AddAttribute({ route, addFunction }) {
 		}
 	};
 
-	const handleClose = () => {
-		setData({
-			active: true,
-			description: '',
-		});
-		setOpen(false);
-	};
 	return (
 		<>
 			<Tooltip title='Añadir'>
 				<Fab
-					onClick={handleClickOpen}
+					onClick={handleClickOpenDialog}
 					sx={{ position: 'fixed', bottom: 18, right: 16 }}
 				>
 					<AddIcon />
 				</Fab>
 			</Tooltip>
-			<Dialog open={open} onClose={handleClose}>
-				<DialogTitle>Añadir elemento</DialogTitle>
+			<Dialog open={openDialog} onClose={handleCloseDialog}>
+				<DialogTitle>Añadir Elemento</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
 						Para crear un elemento proporcione una descripción y su estado
 						inicial, activo por defecto.
 					</DialogContentText>
-					<div
-						style={{
-							display: 'flex',
-						}}
-					>
-						<TextField
-							autoFocus
-							margin='dense'
-							name='description'
-							label='Descripción'
-							variant='standard'
-							value={data.description}
-							onChange={handleChangeText}
-							fullWidth
-						/>
-
-						<Typography mt={2}>Estado:</Typography>
-						<div style={{ display: 'block' }}>
-							<Switch
-								checked={data.active}
-								description={'active'}
-								onChange={handleChangeSwitch}
+					<form onSubmit={handleSubmit}>
+						{' '}
+						<div
+							style={{
+								display: 'flex',
+							}}
+						>
+							<TextField
+								margin='dense'
+								name='description'
+								label='Descripción'
+								variant='standard'
+								value={data.description}
+								onChange={handleChangeText}
+								fullWidth
 							/>
-							<Typography align='center'>
-								{data.active ? 'Activo' : 'Inactivo'}
-							</Typography>
+
+							<Typography mt={2}>Estado:</Typography>
+							<div style={{ display: 'block' }}>
+								<Switch
+									checked={data.active}
+									description={'active'}
+									onChange={handleChangeSwitch}
+								/>
+								<Typography align='center'>
+									{data.active ? 'Activo' : 'Inactivo'}
+								</Typography>
+							</div>
 						</div>
-					</div>
+						<DialogActions style={{ paddingBottom: '0' }}>
+							<Button color='error' onClick={handleCloseDialog}>
+								Cancelar
+							</Button>
+							<Button type='submit' disabled={data.description.length === 0}>
+								Buscar
+							</Button>
+						</DialogActions>
+					</form>
 				</DialogContent>
-				<DialogActions>
-					<Button color='error' onClick={handleClose}>
-						Cancelar
-					</Button>
-					<Button
-						type='submit'
-						onClick={handleSubmit}
-						disabled={data.description.length === 0}
-					>
-						Guardar
-					</Button>
-				</DialogActions>
 			</Dialog>
 			<WarningAlert
 				open={alert.warning}

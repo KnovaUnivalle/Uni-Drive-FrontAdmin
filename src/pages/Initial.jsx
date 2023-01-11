@@ -1,5 +1,5 @@
 import { IconButton, Tooltip, Typography } from '@mui/material';
-import SignIn from '../components/buttons/SignIn';
+import SignInButton from '../components/buttons/SignInButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import './styles/Initial.css';
 
@@ -9,7 +9,7 @@ export default function Initial() {
 			<header>
 				<div className='banner'>
 					<Typography variant='h6'>UniDrive Manager</Typography>
-					<SignIn />
+					<SignInButton />
 				</div>
 				<h1 style={{ textAlign: 'center' }}>Bienvenido</h1>
 			</header>
