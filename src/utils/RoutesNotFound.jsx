@@ -6,5 +6,4 @@ export const basicRoutes = [
 export const attributeRoutes = [
 	{ link: '/home', name: 'HOME' },
 	{ link: '/home/attribute', name: 'ATRIBUTOS' },
-	{ link: '/home/attribute/color', name: 'COLORES' },
 ];
