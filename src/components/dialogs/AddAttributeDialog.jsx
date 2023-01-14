@@ -130,7 +130,7 @@ export default function AddAttributeDialog({ route, addFunction }) {
 								Cancelar
 							</Button>
 							<Button type='submit' disabled={data.description.length === 0}>
-								Buscar
+								Añadir
 							</Button>
 						</DialogActions>
 					</form>

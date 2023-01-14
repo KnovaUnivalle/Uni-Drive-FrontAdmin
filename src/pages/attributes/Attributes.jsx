@@ -7,7 +7,6 @@ import AttributesRoutes from '../../routes/AttributesRoutes';
 import DiamondIcon from '@mui/icons-material/Diamond';
 import NumbersIcon from '@mui/icons-material/Numbers';
 
-const elements = ['Colores', 'Marcas', 'Modelos', 'Tipos', 'Ciudades'];
 const objectElements = {
 	Colores: { url: '/home/attribute/color', icon: <ColorLensIcon /> },
 	Marcas: { url: '/home/attribute/brand', icon: <DiamondIcon /> },
@@ -19,7 +18,7 @@ const objectElements = {
 export default function Attributes() {
 	return (
 		<Box style={{ display: 'flex' }}>
-			<NavDrawer elements={elements} objectElements={objectElements} />
+			<NavDrawer objectElements={objectElements} />
 			<Box sx={{ flexGrow: 1, m: 0 }}>
 				<AttributesRoutes />
 			</Box>

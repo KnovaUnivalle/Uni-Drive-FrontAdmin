@@ -13,25 +13,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import AccountButton from '../buttons/AccountButton';
 
-const pages = [
-	'Pasajeros',
-	'Conductores',
-	'Vehiculos',
-	'Atributos',
-	'Informes',
-];
+const pages = {
+	Pasajeros: '/home/rider',
+	Conductores: '/home/bidder',
+	Vehiculos: '/home/vehicle',
+	Atributos: '/home/attribute/color',
+	Informes: '/home/report',
+};
 
 export default function NavBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const navigate = useNavigate();
-
-	const pagesUrl = {
-		Pasajeros: '/home/rider',
-		Conductores: '/home/bidder',
-		Vehiculos: '/home/vehicle',
-		Informes: '/home/report',
-		Atributos: '/home/attribute',
-	};
 
 	const handleOpenNavMenu = e => {
 		setAnchorElNav(e.currentTarget);
@@ -92,12 +84,12 @@ export default function NavBar() {
 								display: { xs: 'block', md: 'none' },
 							}}
 						>
-							{pages.map(page => (
+							{Object.keys(pages).map(page => (
 								<MenuItem
 									key={page}
 									onClose={handleCloseNavMenu}
 									onClick={() => {
-										navigate(pagesUrl[page], { replace: true });
+										navigate(pages[page], { replace: true });
 										handleCloseNavMenu();
 									}}
 								>
@@ -127,11 +119,11 @@ export default function NavBar() {
 						</Typography>
 					</Button>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-						{pages.map(page => (
+						{Object.keys(pages).map(page => (
 							<Button
 								key={page}
 								onClose={handleCloseNavMenu}
-								onClick={() => navigate(pagesUrl[page], { replace: true })}
+								onClick={() => navigate(pages[page], { replace: true })}
 								sx={{ my: 2, color: 'black', display: 'block' }}
 							>
 								{page}

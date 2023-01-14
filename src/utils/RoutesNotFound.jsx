@@ -3,7 +3,4 @@ export const basicRoutes = [
 	{ link: '/home', name: 'HOME' },
 ];
 
-export const attributeRoutes = [
-	{ link: '/home', name: 'HOME' },
-	{ link: '/home/attribute', name: 'ATRIBUTOS' },
-];
+export const attributeRoutes = [{ link: '/home', name: 'HOME' }];
