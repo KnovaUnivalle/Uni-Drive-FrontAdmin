@@ -11,19 +11,39 @@ import {
 import NavBarHeader from '../tools/NavBarHeader';
 import { useNavigate } from 'react-router-dom';
 import Drawer from '../tools/Drawer';
+import { useState } from 'react';
 
-export default function NavDrawer({ elements, objectElements }) {
+const fillFalseOneTrue = (length, index) => {
+	const arr = Array(length).fill(false);
+	arr[index] = true;
+	return arr;
+};
+
+export default function NavDrawer({ objectElements }) {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.up('md'));
 	const navigate = useNavigate();
+	const lengthObjectElements = Object.keys(objectElements).length;
+	const [mark, setMark] = useState(fillFalseOneTrue(lengthObjectElements, 0));
+
 	return (
 		<Drawer variant='permanent' open={isMobile} style={{ zIndex: '0' }}>
 			<NavBarHeader />
 			<List>
-				{elements.map(element => (
-					<ListItem key={element} sx={{ display: 'block' }} disablePadding>
+				{Object.keys(objectElements).map((element, index) => (
+					<ListItem
+						key={element}
+						sx={{
+							display: 'block',
+							background: mark[index] ? '#CECDCD' : null,
+						}}
+						disablePadding
+					>
 						<ListItemButton
-							onClick={() => navigate(objectElements[element].url)}
+							onClick={() => {
+								navigate(objectElements[element].url);
+								setMark(fillFalseOneTrue(lengthObjectElements, index));
+							}}
 							sx={{
 								minHeight: 52,
 								justifyContent: !isMobile ? 'initial' : 'center',
