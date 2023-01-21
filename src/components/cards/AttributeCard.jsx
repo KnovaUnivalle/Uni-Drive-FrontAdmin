@@ -5,17 +5,13 @@ import {
 	Switch,
 	TextField,
 	Typography,
-	useMediaQuery,
 } from '@mui/material';
 import { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
 import { useFetch } from '../../hooks/useFetch';
 import WarningAlert from '../alerts/WarningAlert';
 import InfoAlert from '../alerts/InfoAlert';
 
 export default function AttributeCard({ attribute, route }) {
-	const theme = useTheme();
-	const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 	const { update } = useFetch();
 	const [edit, setEdit] = useState(true);
 	const [alert, setAlert] = useState({ info: false, warning: false });
@@ -99,9 +95,8 @@ export default function AttributeCard({ attribute, route }) {
 	return (
 		<Card
 			sx={{
-				margin: '0.8rem',
-				minWidth: '15rem',
-				flex: isMobile ? '1 1 auto' : '0 1 30%',
+				m: '0.5rem',
+				maxWidth: { sm: '45%', md: '45%', lg: '31%', xs: '100%' },
 			}}
 		>
 			<CardContent>
@@ -121,8 +116,8 @@ export default function AttributeCard({ attribute, route }) {
 						description={'description'}
 						value={data.description}
 						onChange={handleChangeText}
-						style={{
-							width: isMobile ? '65%' : '70%',
+						sx={{
+							width: { xs: '70%', md: '65%' },
 						}}
 						disabled={edit}
 					/>
