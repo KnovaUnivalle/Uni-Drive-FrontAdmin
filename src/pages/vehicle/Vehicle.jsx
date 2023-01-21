@@ -1,3 +1,6 @@
+import VehicleDeck from '../../components/decks/VehicleDeck';
+
 export default function Vehicle() {
-	return <div>Vehicle</div>;
+	const route = '/home/vehicle';
+	return <VehicleDeck route={route} />;
 }

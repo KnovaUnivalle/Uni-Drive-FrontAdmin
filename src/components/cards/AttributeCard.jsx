@@ -98,10 +98,13 @@ export default function AttributeCard({ attribute, route }) {
 				m: '0.5rem',
 				maxWidth: { sm: '45%', md: '45%', lg: '31%', xs: '100%' },
 			}}
+			elevation={3}
 		>
 			<CardContent>
-				<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-					<Typography>ID: {attribute.id}</Typography>
+				<div>
+					<Typography textAlign={'right'}>
+						<b>ID:</b> {attribute.id}
+					</Typography>
 				</div>
 				<form
 					onSubmit={handleSubmit}
