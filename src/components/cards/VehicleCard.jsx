@@ -5,14 +5,14 @@ export default function VehicleCard({ data, route }) {
 	const navigate = useNavigate();
 
 	const handleButton = e => {
-		navigate(route + '/' + data.id);
+		navigate('/home/' + route + data.id);
 	};
 
 	return (
 		<Card
 			sx={{
 				m: '0.5rem',
-				width: { sm: '45%', md: '30%', lg: '24%', xs: '100%' },
+				width: { sm: '45%', md: '30%', lg: '23.75%', xs: '100%' },
 				maxWidth: { lg: '35%' },
 			}}
 			elevation={3}
@@ -20,26 +20,28 @@ export default function VehicleCard({ data, route }) {
 			<CardContent>
 				<Box>
 					<Typography textAlign={'right'}>
-						<b>ID:</b> 1
+						<b>ID:</b> {data.id}
 					</Typography>
 				</Box>
 				<Box sx={{ display: 'flex' }}>
 					<Box sx={{ width: '50%' }}>
-						<Typography variant=''>
+						<Typography>
 							<b>Nombre Coductor:</b>
-						</Typography>
-						<Typography>
+							<br />
 							<b>ID Coductor:</b>
-						</Typography>
-						<Typography>
+							<br />
 							<b>Placa vehiculo:</b>
 						</Typography>
 					</Box>
 
 					<Box sx={{ width: '50%' }}>
-						<Typography textAlign={'right'}>Jose Antonio</Typography>
-						<Typography textAlign={'right'}>26</Typography>
-						<Typography textAlign={'right'}>343243</Typography>
+						<Typography textAlign={'right'}>
+							<span>{data.Bidder.firstName}</span>
+							<br />
+							<span>{data.Bidder.id}</span>
+							<br />
+							<span>{data.plate}</span>
+						</Typography>
 					</Box>
 				</Box>
 				<Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: '0.5rem' }}>
