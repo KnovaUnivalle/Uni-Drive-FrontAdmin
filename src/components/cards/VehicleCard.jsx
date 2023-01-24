@@ -64,7 +64,7 @@ export default function VehicleCard({ data, route }) {
 								description={'active'}
 							/>
 						}
-						label={'Estado'}
+						label={active ? 'Activo' : 'Inactivo'}
 					/>
 					<Typography mt='0.5rem' textAlign={'right'}>
 						<b>ID:</b> {data.id}
