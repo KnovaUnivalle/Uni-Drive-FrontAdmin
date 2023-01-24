@@ -25,7 +25,8 @@ export default function AttributeDeck({ route, routeNotFound = [] }) {
 			setNotElements(true);
 		} else {
 			setCharging(false);
-			setAttributes(await res.json());
+			const data = await res.json();
+			setAttributes(data);
 		}
 	};
 
