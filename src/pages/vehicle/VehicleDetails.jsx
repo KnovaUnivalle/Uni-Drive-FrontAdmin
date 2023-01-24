@@ -8,8 +8,9 @@ import {
 	Switch,
 	Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Load from '../../components/tools/Load';
 import { useFetch } from '../../hooks/useFetch';
 
 const route = 'vehicle/';
@@ -17,14 +18,27 @@ const route = 'vehicle/';
 export default function VehicleDetails() {
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const { update } = useFetch();
+	const { update, get } = useFetch();
 	const [data, setData] = useState({});
 	const [active, setActive] = useState(false);
 	const [change, setChange] = useState(true);
+	const [charging, setCharging] = useState(true);
+
+	const loadData = async () => {
+		setCharging(true);
+		const res = await get(route + id);
+		if (res.status === 404) {
+			console.log('error');
+		} else {
+			const dataRes = await res.json();
+			setData(dataRes);
+			setActive(dataRes.active);
+			setCharging(false);
+		}
+	};
 
 	const handleChangeSwitch = e => {
 		const { checked } = e.target;
-
 		setActive(checked);
 		if (checked === data.active) {
 			setChange(true);
@@ -50,12 +64,20 @@ export default function VehicleDetails() {
 		}
 	};
 
+	useEffect(() => {
+		loadData();
+	}, [id]);
+
+	if (charging) {
+		return <Load />;
+	}
+
 	return (
 		<Container maxWidth={'sm'}>
 			<Card sx={{ m: '2rem' }} elevation={3}>
 				<CardContent>
 					<Typography mt='1rem' textAlign={'center'} variant={'h5'}>
-						Detalles de vehiculo
+						<b>Detalles de vehiculo</b>
 					</Typography>
 					<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
 						<FormControlLabel
@@ -96,21 +118,23 @@ export default function VehicleDetails() {
 
 						<Box sx={{ width: '50%' }}>
 							<Typography textAlign={'right'}>
-								<span>Jose Antonio</span>
+								<span>
+									{data.Bidder.firstName + ' ' + data.Bidder.lastName}
+								</span>
 								<br />
-								<span>26</span>
+								<span>{data.Bidder.id}</span>
 								<br />
-								<span>343243</span>
+								<span>{data.plate}</span>
 								<br />
-								<span>343243</span>
+								<span>{data.ColorVehicle.description}</span>
 								<br />
-								<span>343243</span>
+								<span>{data.TypeVehicle.description}</span>
 								<br />
-								<span>343243</span>
+								<span>{data.YearVehicle.description}</span>
 								<br />
-								<span>343243</span>
+								<span>{data.BrandVehicle.description}</span>
 								<br />
-								<span>343243</span>
+								<span>{data.available}</span>
 							</Typography>
 						</Box>
 					</Box>
