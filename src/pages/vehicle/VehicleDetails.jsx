@@ -4,39 +4,92 @@ import {
 	Card,
 	CardContent,
 	Container,
+	FormControlLabel,
+	Switch,
 	Typography,
 } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useFetch } from '../../hooks/useFetch';
+
+const route = 'vehicle/';
 
 export default function VehicleDetails() {
 	const { id } = useParams();
+	const navigate = useNavigate();
+	const { update } = useFetch();
+	const [data, setData] = useState({});
+	const [active, setActive] = useState(false);
+	const [change, setChange] = useState(true);
+
+	const handleChangeSwitch = e => {
+		const { checked } = e.target;
+
+		setActive(checked);
+		if (checked === data.active) {
+			setChange(true);
+		} else {
+			setChange(false);
+		}
+	};
+
+	const handleButton = e => {
+		navigate('/home/' + route);
+	};
+
+	const handleSubmit = async e => {
+		e.preventDefault();
+		const res = await update(route + 'active/' + id + '?active=' + active);
+		if (res.status === 201) {
+			setChange(true);
+			setData({ ...data, active });
+			// setAlert({ ...alert, info: true });
+		} else if (res.status === 500) {
+			console.log('fallo');
+			// setAlert({ ...alert, warning: true });
+		}
+	};
 
 	return (
 		<Container maxWidth={'sm'}>
-			<Card sx={{ mt: '2rem' }} elevation={3}>
+			<Card sx={{ m: '2rem' }} elevation={3}>
 				<CardContent>
 					<Typography mt='1rem' textAlign={'center'} variant={'h5'}>
 						Detalles de vehiculo
 					</Typography>
-					<Box>
-						<Typography textAlign={'right'}>
+					<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+						<FormControlLabel
+							control={
+								<Switch
+									checked={active}
+									onChange={handleChangeSwitch}
+									description={'active'}
+								/>
+							}
+							label={'Estado'}
+						/>
+						<Typography mt='0.5rem' textAlign={'right'}>
 							<b>ID:</b> {id}
 						</Typography>
 					</Box>
 					<Box sx={{ display: 'flex' }}>
 						<Box sx={{ width: '50%' }}>
 							<Typography>
-								<b>Nombre Coductor:</b>
+								<b>Nombre:</b>
 								<br />
-								<b>ID Coductor:</b>
+								<b>ID:</b>
 								<br />
-								<b>Placa vehiculo:</b>
+								<b>Placa:</b>
 								<br />
-								<b>Color vehiculo:</b>
+								<b>Color:</b>
 								<br />
-								<b>Tipo vehiculo:</b>
+								<b>Tipo:</b>
 								<br />
-								<b>Modelo vehiculo:</b>
+								<b>Modelo:</b>
+								<br />
+								<b>Marca:</b>
+								<br />
+								<b>Cupo</b>
 								<br />
 							</Typography>
 						</Box>
@@ -48,13 +101,36 @@ export default function VehicleDetails() {
 								<span>26</span>
 								<br />
 								<span>343243</span>
+								<br />
+								<span>343243</span>
+								<br />
+								<span>343243</span>
+								<br />
+								<span>343243</span>
+								<br />
+								<span>343243</span>
+								<br />
+								<span>343243</span>
 							</Typography>
 						</Box>
 					</Box>
 					<Box
-						sx={{ display: 'flex', justifyContent: 'flex-end', mt: '0.5rem' }}
+						sx={{
+							display: 'flex',
+							justifyContent: 'space-between',
+							mt: '0.5rem',
+						}}
 					>
-						<Button variant='contained'>Ver más</Button>
+						<Button
+							variant='contained'
+							disabled={change}
+							onClick={handleSubmit}
+						>
+							Guardar
+						</Button>
+						<Button variant='contained' onClick={handleButton}>
+							Volver
+						</Button>
 					</Box>
 				</CardContent>
 			</Card>
