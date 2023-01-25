@@ -12,8 +12,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Load from '../../components/tools/Load';
 import { useFetch } from '../../hooks/useFetch';
+import { homeRoute } from '../../utils/RoutesNotFound';
+import NotFound from '../NotFound';
 
 const route = 'vehicle/';
+const routesNotFound = [
+	...homeRoute,
+	{ link: '/home/vehicle', name: 'VEHICULOS' },
+];
 
 export default function VehicleDetails() {
 	const { id } = useParams();
@@ -23,12 +29,14 @@ export default function VehicleDetails() {
 	const [active, setActive] = useState(false);
 	const [change, setChange] = useState(true);
 	const [charging, setCharging] = useState(true);
+	const [notElements, setNotElements] = useState(false);
 
 	const loadData = async () => {
 		setCharging(true);
 		const res = await get(route + id);
 		if (res.status === 404) {
-			console.log('error');
+			setCharging(false);
+			setNotElements(true);
 		} else {
 			const dataRes = await res.json();
 			setData(dataRes);
@@ -65,11 +73,18 @@ export default function VehicleDetails() {
 	};
 
 	useEffect(() => {
+		setNotElements(false);
 		loadData();
 	}, [id]);
 
 	if (charging) {
 		return <Load />;
+	}
+
+	if (notElements) {
+		return (
+			<NotFound routes={routesNotFound} title={'Elementos no encontrados'} />
+		);
 	}
 
 	return (
