@@ -46,7 +46,6 @@ export default function NavDrawer({ objectElements }) {
 							}}
 							sx={{
 								minHeight: 52,
-								justifyContent: !isMobile ? 'initial' : 'center',
 								px: 2.5,
 							}}
 						>

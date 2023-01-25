@@ -72,7 +72,8 @@ export default function AddAttributeDialog({ route, addFunction }) {
 		const res = await create(route, data);
 		if (res.status === 201) {
 			handleCloseDialog();
-			addFunction(await res.json());
+			const id = await res.json();
+			addFunction({ ...data, id });
 			setAlert({ ...alert, info: true });
 		} else if (res.status === 409) {
 			setAlert({ ...alert, warning: true });
