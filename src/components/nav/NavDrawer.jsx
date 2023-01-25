@@ -13,11 +13,25 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Drawer from '../tools/Drawer';
 import { useEffect, useState } from 'react';
 
+/**
+ * Create a list with a length fill with false and one true in a nindex
+ * @param {Integer} length
+ * @param {Integer} index
+ * @returns
+ */
 const fillFalseOneTrue = (length, index) => {
 	const arr = Array(length).fill(false);
 	arr[index] = true;
 	return arr;
 };
+
+/**
+ * Find index of the key object to match with pathname
+ * @param {String} path
+ * @param {Object} object
+ * @param {Integer[]} keys
+ * @returns
+ */
 
 const findItem = (path, object, keys) => {
 	const indexItem = keys.reduce((acc, cur, index) => {
