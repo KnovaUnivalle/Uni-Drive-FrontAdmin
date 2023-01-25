@@ -9,9 +9,9 @@ import {
 	useMediaQuery,
 } from '@mui/material';
 import NavBarHeader from '../tools/NavBarHeader';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Drawer from '../tools/Drawer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const fillFalseOneTrue = (length, index) => {
 	const arr = Array(length).fill(false);
@@ -19,18 +19,36 @@ const fillFalseOneTrue = (length, index) => {
 	return arr;
 };
 
-export default function NavDrawer({ objectElements }) {
+const findItem = (path, object, keys) => {
+	const indexItem = keys.reduce((acc, cur, index) => {
+		if (path === object[cur].url) {
+			return index;
+		}
+		return acc;
+	}, 0);
+	return indexItem;
+};
+
+export default function NavDrawer({ objectItems }) {
+	const { pathname } = useLocation();
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.up('md'));
+	const keys = Object.keys(objectItems);
 	const navigate = useNavigate();
-	const lengthObjectElements = Object.keys(objectElements).length;
-	const [mark, setMark] = useState(fillFalseOneTrue(lengthObjectElements, 0));
+	const lengthObjectItems = Object.keys(objectItems).length;
+	const [mark, setMark] = useState([]);
+
+	useEffect(() => {
+		setMark(
+			fillFalseOneTrue(lengthObjectItems, findItem(pathname, objectItems, keys))
+		);
+	}, [pathname]);
 
 	return (
 		<Drawer variant='permanent' open={isMobile} style={{ zIndex: '0' }}>
 			<NavBarHeader />
 			<List>
-				{Object.keys(objectElements).map((element, index) => (
+				{keys.map((element, index) => (
 					<ListItem
 						key={element}
 						sx={{
@@ -41,8 +59,7 @@ export default function NavDrawer({ objectElements }) {
 					>
 						<ListItemButton
 							onClick={() => {
-								navigate(objectElements[element].url);
-								setMark(fillFalseOneTrue(lengthObjectElements, index));
+								navigate(objectItems[element].url);
 							}}
 							sx={{
 								minHeight: 52,
@@ -56,9 +73,7 @@ export default function NavDrawer({ objectElements }) {
 									justifyContent: 'center',
 								}}
 							>
-								<Tooltip title={element}>
-									{objectElements[element].icon}
-								</Tooltip>
+								<Tooltip title={element}>{objectItems[element].icon}</Tooltip>
 							</ListItemIcon>
 							<ListItemText
 								primary={element}
