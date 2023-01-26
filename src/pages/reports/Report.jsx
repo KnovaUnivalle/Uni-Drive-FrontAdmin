@@ -14,7 +14,7 @@ const objectItems = {
 	},
 
 	Conductores: {
-		url: '/home/report/bider',
+		url: '/home/report/bidder',
 		icon: <AirlineSeatReclineNormalIcon />,
 	},
 	Pasajeros: {

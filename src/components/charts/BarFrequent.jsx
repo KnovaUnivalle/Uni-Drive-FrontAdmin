@@ -4,7 +4,7 @@ import { VictoryBar, VictoryChart, VictoryTheme } from 'victory';
 import { useFetch } from '../../hooks/useFetch';
 
 export default function BarFrequent({
-	route = 'report/frequent/color',
+	route = 'color',
 	title,
 	color = '#c43a31',
 }) {
@@ -12,9 +12,10 @@ export default function BarFrequent({
 	const [data, setData] = useState([]);
 
 	const loadData = async () => {
-		const res = await get(route);
+		const res = await get('report/frequent/' + route);
 		const resData = await res.json();
 		setData(resData);
+		console.log(resData);
 	};
 
 	useEffect(() => {

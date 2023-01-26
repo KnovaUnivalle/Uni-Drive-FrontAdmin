@@ -35,7 +35,6 @@ export default function PieToUniversity({ colors = ['#b4ae6f', '#6F75B4 '] }) {
 				data={data}
 				colorScale={colors}
 				innerRadius={60}
-				l // abelPlacement={({ index }) => (index ? 'parallel' : 'vertical')}
 				padding={90}
 			/>
 		</Paper>

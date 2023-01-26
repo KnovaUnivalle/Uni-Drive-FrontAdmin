@@ -4,7 +4,7 @@ import { VictoryPie } from 'victory';
 import { useFetch } from '../../hooks/useFetch';
 
 export default function PieActive({
-	route = 'report/active/color',
+	route = 'color',
 	title,
 	colors = ['orange', 'navy'],
 }) {
@@ -12,7 +12,7 @@ export default function PieActive({
 	const [data, setData] = useState([]);
 
 	const loadData = async () => {
-		const res = await get(route);
+		const res = await get('report/active/' + route);
 		const resData = await res.json();
 		setData(resData);
 	};
@@ -33,7 +33,7 @@ export default function PieActive({
 			<Typography align='center' variant='h5'>
 				<b>{title} Activos e Inactivos</b>
 			</Typography>
-			<VictoryPie data={data} colorScale={colors} padding={60} />
+			<VictoryPie data={data} colorScale={colors} padding={80} />
 		</Paper>
 	);
 }
