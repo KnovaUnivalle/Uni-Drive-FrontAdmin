@@ -8,11 +8,26 @@ import DiamondIcon from '@mui/icons-material/Diamond';
 import NumbersIcon from '@mui/icons-material/Numbers';
 
 const objectItems = {
-	Colores: { url: '/home/attribute/color', icon: <ColorLensIcon /> },
-	Marcas: { url: '/home/attribute/brand', icon: <DiamondIcon /> },
-	Modelos: { url: '/home/attribute/year', icon: <NumbersIcon /> },
-	Tipos: { url: '/home/attribute/type', icon: <DirectionsCarIcon /> },
-	Ciudades: { url: '/home/attribute/city', icon: <LocationCityIcon /> },
+	Colores: {
+		url: '/home/attribute/color',
+		icon: <ColorLensIcon />,
+	},
+	Marcas: {
+		url: '/home/attribute/brand',
+		icon: <DiamondIcon />,
+	},
+	Modelos: {
+		url: '/home/attribute/year',
+		icon: <NumbersIcon />,
+	},
+	Tipos: {
+		url: '/home/attribute/type',
+		icon: <DirectionsCarIcon />,
+	},
+	Ciudades: {
+		url: '/home/attribute/city',
+		icon: <LocationCityIcon />,
+	},
 };
 
 export default function Attributes() {

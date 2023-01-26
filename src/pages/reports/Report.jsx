@@ -1,19 +1,31 @@
 import { Box } from '@mui/material';
 import NavDrawer from '../../components/nav/NavDrawer';
 import ReportRoutes from '../../routes/ReportRoutes';
-
-import ColorLensIcon from '@mui/icons-material/ColorLens';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
+import AirlineSeatReclineNormalIcon from '@mui/icons-material/AirlineSeatReclineNormal';
+import PeopleIcon from '@mui/icons-material/People';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import DiamondIcon from '@mui/icons-material/Diamond';
-import NumbersIcon from '@mui/icons-material/Numbers';
+import CategoryIcon from '@mui/icons-material/Category';
+import HomeIcon from '@mui/icons-material/Home';
 
 const objectItems = {
-	Colores: { url: '/home/attribute/color', icon: <ColorLensIcon /> },
-	Marcas: { url: '/home/attribute/brand', icon: <DiamondIcon /> },
-	Modelos: { url: '/home/attribute/year', icon: <NumbersIcon /> },
-	Tipos: { url: '/home/attribute/type', icon: <DirectionsCarIcon /> },
-	Ciudades: { url: '/home/attribute/city', icon: <LocationCityIcon /> },
+	Principal: { url: '/home/report/rider', icon: <HomeIcon /> },
+
+	Conductores: {
+		url: '/home/report/bider',
+		icon: <AirlineSeatReclineNormalIcon />,
+	},
+	Pasajeros: {
+		url: '/home/report/rider',
+		icon: <PeopleIcon />,
+	},
+	Vehiculos: {
+		url: '/home/report/vehicle',
+		icon: <DirectionsCarIcon />,
+	},
+	Attributos: {
+		url: '/home/report/attributes',
+		icon: <CategoryIcon />,
+	},
 };
 
 export default function Report() {
