@@ -6,7 +6,7 @@ const host = import.meta.env.VITE_HOST || 'http://localhost:3000/';
  * @returns jwt {String}
  */
 const loginService = async data => {
-	return await fetch(host + 'admin/login', {
+	return await fetch(host + 'login/admin', {
 		method: 'POST',
 		mode: 'cors',
 		cache: 'default',
