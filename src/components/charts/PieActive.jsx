@@ -25,7 +25,7 @@ export default function PieActive({
 		<Paper
 			elevation={3}
 			sx={{
-				maxWidth: { md: '45%', lg: '30%', xs: '100%' },
+				maxWidth: { md: '40%', lg: '30%', xs: '100%' },
 				m: '1rem',
 				pt: '0.5rem',
 			}}

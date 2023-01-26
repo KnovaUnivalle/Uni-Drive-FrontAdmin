@@ -15,7 +15,6 @@ export default function BarFrequent({
 		const res = await get('report/frequent/' + route);
 		const resData = await res.json();
 		setData(resData);
-		console.log(resData);
 	};
 
 	useEffect(() => {
