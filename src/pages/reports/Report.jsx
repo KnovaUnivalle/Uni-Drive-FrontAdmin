@@ -8,7 +8,10 @@ import CategoryIcon from '@mui/icons-material/Category';
 import HomeIcon from '@mui/icons-material/Home';
 
 const objectItems = {
-	Principal: { url: '/home/report/rider', icon: <HomeIcon /> },
+	Principal: {
+		url: '/home/report/principal',
+		icon: <HomeIcon />,
+	},
 
 	Conductores: {
 		url: '/home/report/bider',
