@@ -3,11 +3,9 @@ import { useEffect, useState } from 'react';
 import { VictoryPie } from 'victory';
 import { useFetch } from '../../hooks/useFetch';
 
-export default function PieActive({
-	route = 'report/active/color',
-	title,
-	colors = ['orange', 'navy'],
-}) {
+const route = 'report/toUniversity';
+
+export default function PieToUniversity({ colors = ['#b4ae6f', '#6F75B4 '] }) {
 	const { get } = useFetch();
 	const [data, setData] = useState([]);
 
@@ -19,7 +17,7 @@ export default function PieActive({
 
 	useEffect(() => {
 		loadData();
-	}, [route]);
+	}, []);
 
 	return (
 		<Paper
@@ -31,9 +29,15 @@ export default function PieActive({
 			}}
 		>
 			<Typography align='center' variant='h5'>
-				<b>{title} Activos e Inactivos</b>
+				<b>Tipo de viajes</b>
 			</Typography>
-			<VictoryPie data={data} colorScale={colors} padding={60} />
+			<VictoryPie
+				data={data}
+				colorScale={colors}
+				innerRadius={60}
+				l // abelPlacement={({ index }) => (index ? 'parallel' : 'vertical')}
+				padding={90}
+			/>
 		</Paper>
 	);
 }
