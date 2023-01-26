@@ -14,11 +14,7 @@ export default function PieActive({
 	const loadData = async () => {
 		const res = await get(route);
 		const resData = await res.json();
-		setData([
-			{ x: 1, y: resData.active, label: 'Activo' },
-			{ x: resData.active, y: resData.noActive, label: 'Inactivo' },
-		]);
-		console.log(resData);
+		setData(resData);
 	};
 
 	useEffect(() => {
@@ -31,10 +27,11 @@ export default function PieActive({
 			sx={{
 				maxWidth: { md: '45%', lg: '30%', xs: '100%' },
 				m: '1rem',
+				pt: '0.5rem',
 			}}
 		>
-			<Typography mt='1rem' align='center' variant='h5'>
-				{title} Activos e Inactivos
+			<Typography align='center' variant='h5'>
+				<b>{title} Activos e Inactivos</b>
 			</Typography>
 			<VictoryPie data={data} colorScale={colors} />
 		</Paper>
