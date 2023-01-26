@@ -5,7 +5,13 @@ import PieToUniversity from '../../components/charts/PieToUniversity';
 
 export default function Principal() {
 	return (
-		<Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+		<Box
+			sx={{
+				display: 'flex',
+				flexWrap: 'wrap',
+				justifyContent: 'center',
+			}}
+		>
 			<BarFrequent />
 			<PieActive />
 			<PieToUniversity />

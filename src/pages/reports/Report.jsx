@@ -6,6 +6,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import CategoryIcon from '@mui/icons-material/Category';
 import HomeIcon from '@mui/icons-material/Home';
+import FlightIcon from '@mui/icons-material/Flight';
 
 const objectItems = {
 	Principal: {
@@ -28,6 +29,10 @@ const objectItems = {
 	Attributos: {
 		url: '/home/report/attributes',
 		icon: <CategoryIcon />,
+	},
+	Viajes: {
+		url: '/home/report/trip',
+		icon: <FlightIcon />,
 	},
 };
 
