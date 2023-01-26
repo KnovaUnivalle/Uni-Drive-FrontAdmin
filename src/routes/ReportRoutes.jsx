@@ -6,7 +6,7 @@ export default function ReportRoutes() {
 	return (
 		<Routes>
 			<Route path='*' element={<NotFound />} />
-			<Route path='principal' element={<Principal />} />
+			<Route path='/' element={<Principal />} />
 		</Routes>
 	);
 }

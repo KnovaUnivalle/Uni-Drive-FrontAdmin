@@ -9,7 +9,7 @@ import HomeIcon from '@mui/icons-material/Home';
 
 const objectItems = {
 	Principal: {
-		url: '/home/report/principal',
+		url: '/home/report/',
 		icon: <HomeIcon />,
 	},
 
