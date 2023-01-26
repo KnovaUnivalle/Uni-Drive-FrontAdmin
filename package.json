@@ -10,6 +10,7 @@
     "format": "prettier --write .",
     "lint": "eslint --fix . --ext .js,.jsx",
     "test": "jest"
+    "start": "npx http-server ./dist"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -38,3 +39,4 @@
     "vite": "^3.2.3"
   }
 }
+
