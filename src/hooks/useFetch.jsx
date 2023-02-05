@@ -17,7 +17,7 @@ export function FetchProvider({ children }) {
 		try {
 			return await fetch(host + route, {
 				method: 'GET',
-				mode: 'no-cors',
+				mode: 'cors',
 				cache: 'default',
 				credentials: 'same-origin',
 				headers: {
@@ -39,7 +39,7 @@ export function FetchProvider({ children }) {
 		try {
 			return await fetch(host + route, {
 				method: 'POST',
-				mode: 'no-cors',
+				mode: 'cors',
 				cache: 'default',
 				credentials: 'same-origin',
 				headers: {
@@ -63,7 +63,7 @@ export function FetchProvider({ children }) {
 		try {
 			return await fetch(host + route, {
 				method: 'PUT',
-				mode: 'no-cors',
+				mode: 'ncors',
 				cache: 'default',
 				credentials: 'same-origin',
 				headers: {
