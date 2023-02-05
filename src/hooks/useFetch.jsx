@@ -19,7 +19,7 @@ export function FetchProvider({ children }) {
 				method: 'GET',
 				mode: 'cors',
 				cache: 'default',
-				credentials: 'same-origin',
+				credentials: 'include',
 				headers: {
 					Authorization: token,
 				},
@@ -41,7 +41,7 @@ export function FetchProvider({ children }) {
 				method: 'POST',
 				mode: 'cors',
 				cache: 'default',
-				credentials: 'same-origin',
+				credentials: 'include',
 				headers: {
 					Authorization: token,
 					'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export function FetchProvider({ children }) {
 				method: 'PUT',
 				mode: 'ncors',
 				cache: 'default',
-				credentials: 'same-origin',
+				credentials: 'include',
 				headers: {
 					Authorization: token,
 					'Content-Type': 'application/json',
